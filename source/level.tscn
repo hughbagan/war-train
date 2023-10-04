@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci22hll1bcr4p"]
+
+[ext_resource type="Script" path="res://source/level.gd" id="1_3ek3s"]
+[ext_resource type="Texture2D" uid="uid://cyfusej1gat13" path="res://assets/red_square.png" id="2_7a35l"]
+[ext_resource type="PackedScene" uid="uid://c3jivqsb57pqi" path="res://source/car.tscn" id="2_jca65"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_n7g77"]
+vertices = PackedVector2Array(-125, -131, 707, -134, 697, 403, -126, 385)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-125, -131, 707, -134, 697, 403, -126, 385)])
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_3ek3s")
+
+[node name="Train" type="Node2D" parent="."]
+
+[node name="Car" parent="Train" instance=ExtResource("2_jca65")]
+
+[node name="Car2" parent="Train" instance=ExtResource("2_jca65")]
+
+[node name="Car3" parent="Train" instance=ExtResource("2_jca65")]
+
+[node name="Car4" parent="Train" instance=ExtResource("2_jca65")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(104, 60)
+texture = ExtResource("2_7a35l")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(432, 125)
+texture = ExtResource("2_7a35l")
+
+[node name="TrainPath" type="Node" parent="."]
+
+[node name="Marker2D12" type="Marker2D" parent="TrainPath"]
+position = Vector2(8, -10)
+
+[node name="Marker2D2" type="Marker2D" parent="TrainPath"]
+position = Vector2(136, -82)
+
+[node name="Marker2D3" type="Marker2D" parent="TrainPath"]
+position = Vector2(395, -34)
+
+[node name="Marker2D4" type="Marker2D" parent="TrainPath"]
+position = Vector2(596, 123)
+
+[node name="Marker2D5" type="Marker2D" parent="TrainPath"]
+position = Vector2(598, 182)
+
+[node name="Marker2D6" type="Marker2D" parent="TrainPath"]
+position = Vector2(562, 228)
+
+[node name="Marker2D7" type="Marker2D" parent="TrainPath"]
+position = Vector2(478, 251)
+
+[node name="Marker2D8" type="Marker2D" parent="TrainPath"]
+position = Vector2(352, 242)
+
+[node name="Marker2D9" type="Marker2D" parent="TrainPath"]
+position = Vector2(231, 242)
+
+[node name="Marker2D10" type="Marker2D" parent="TrainPath"]
+position = Vector2(103, 292)
+
+[node name="Marker2D11" type="Marker2D" parent="TrainPath"]
+position = Vector2(-49, 284)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_n7g77")
