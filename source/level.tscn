@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://c3jivqsb57pqi" path="res://source/car.tscn" id="2_jca65"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_n7g77"]
-vertices = PackedVector2Array(-125, -131, 707, -134, 697, 403, -126, 385)
+vertices = PackedVector2Array(-729, -375, 1006, -361, 1001, 561, -723, 566)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-125, -131, 707, -134, 697, 403, -126, 385)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-729, -375, 1006, -361, 1001, 561, -723, 566)])
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_3ek3s")
@@ -65,6 +65,26 @@ position = Vector2(103, 292)
 [node name="Marker2D11" type="Marker2D" parent="TrainPath"]
 position = Vector2(-49, 284)
 
+[node name="Marker2D13" type="Marker2D" parent="TrainPath"]
+position = Vector2(-464, 140)
+
+[node name="Marker2D14" type="Marker2D" parent="TrainPath"]
+position = Vector2(-412, -190)
+
+[node name="Marker2D15" type="Marker2D" parent="TrainPath"]
+position = Vector2(-33, -265)
+
+[node name="Marker2D16" type="Marker2D" parent="TrainPath"]
+position = Vector2(475, -214)
+
+[node name="Marker2D17" type="Marker2D" parent="TrainPath"]
+position = Vector2(869, 17)
+
+[node name="Marker2D18" type="Marker2D" parent="TrainPath"]
+position = Vector2(609, 444)
+
+[node name="Marker2D19" type="Marker2D" parent="TrainPath"]
+position = Vector2(-463, 423)
+
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_n7g77")

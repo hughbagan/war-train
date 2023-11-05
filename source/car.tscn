@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3jivqsb57pqi"]
+[gd_scene load_steps=6 format=3 uid="uid://c3jivqsb57pqi"]
 
 [ext_resource type="Script" path="res://source/Car.gd" id="1_fgada"]
 [ext_resource type="Texture2D" uid="uid://cs0smp5m56c18" path="res://assets/cyan_square.png" id="2_p6iy7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8r2v"]
 size = Vector2(32, 32)
+
+[sub_resource type="SystemFont" id="SystemFont_qi326"]
+
+[sub_resource type="Theme" id="Theme_s861d"]
+default_font = SubResource("SystemFont_qi326")
 
 [node name="Car" type="CharacterBody2D"]
 script = ExtResource("1_fgada")
@@ -21,5 +26,10 @@ shape = SubResource("RectangleShape2D_y8r2v")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme = SubResource("Theme_s861d")
 
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_exited"]
