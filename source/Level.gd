@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var path :Array[Node] = $TrainPath.get_children()
+@onready var path: Array[Node] = $TrainPath.get_children()
 
 func _draw():
 	for i in range(path.size()):

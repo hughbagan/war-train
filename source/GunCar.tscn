@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://23cv7f2271rv"]
+
+[ext_resource type="Script" path="res://source/GunCar.gd" id="1_xy82o"]
+[ext_resource type="Texture2D" uid="uid://cs0smp5m56c18" path="res://assets/cyan_square.png" id="2_fjwye"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3hk8b"]
+size = Vector2(32, 32)
+
+[sub_resource type="SystemFont" id="SystemFont_qi326"]
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_0wtr4"]
+default_font = SubResource("SystemFont_qi326")
+
+[node name="GunCar" type="CharacterBody2D"]
+script = ExtResource("1_xy82o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fjwye")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_3hk8b")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme = SubResource("Theme_0wtr4")
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_exited"]

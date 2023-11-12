@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ci22hll1bcr4p"]
+[gd_scene load_steps=6 format=3 uid="uid://ci22hll1bcr4p"]
 
-[ext_resource type="Script" path="res://source/level.gd" id="1_3ek3s"]
-[ext_resource type="Texture2D" uid="uid://cyfusej1gat13" path="res://assets/red_square.png" id="2_7a35l"]
-[ext_resource type="PackedScene" uid="uid://c3jivqsb57pqi" path="res://source/car.tscn" id="2_jca65"]
+[ext_resource type="Script" path="res://source/Level.gd" id="1_3ek3s"]
+[ext_resource type="PackedScene" uid="uid://c3jivqsb57pqi" path="res://source/Car.tscn" id="2_jca65"]
+[ext_resource type="PackedScene" uid="uid://23cv7f2271rv" path="res://source/GunCar.tscn" id="3_k6b10"]
+[ext_resource type="PackedScene" uid="uid://d0u2v5najtne4" path="res://source/Enemy.tscn" id="4_5yemi"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_n7g77"]
 vertices = PackedVector2Array(-729, -375, 1006, -361, 1001, 561, -723, 566)
@@ -16,19 +17,23 @@ script = ExtResource("1_3ek3s")
 
 [node name="Car" parent="Train" instance=ExtResource("2_jca65")]
 
-[node name="Car2" parent="Train" instance=ExtResource("2_jca65")]
+[node name="GunCar" parent="Train" instance=ExtResource("3_k6b10")]
 
-[node name="Car3" parent="Train" instance=ExtResource("2_jca65")]
+[node name="GunCar2" parent="Train" instance=ExtResource("3_k6b10")]
 
-[node name="Car4" parent="Train" instance=ExtResource("2_jca65")]
+[node name="GunCar3" parent="Train" instance=ExtResource("3_k6b10")]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Enemy" parent="." instance=ExtResource("4_5yemi")]
 position = Vector2(104, 60)
-texture = ExtResource("2_7a35l")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(432, 125)
-texture = ExtResource("2_7a35l")
+[node name="Enemy2" parent="." instance=ExtResource("4_5yemi")]
+position = Vector2(468, 123)
+
+[node name="Enemy4" parent="." instance=ExtResource("4_5yemi")]
+position = Vector2(28, 206)
+
+[node name="Enemy3" parent="." instance=ExtResource("4_5yemi")]
+position = Vector2(188, 158)
 
 [node name="TrainPath" type="Node" parent="."]
 
@@ -88,3 +93,4 @@ position = Vector2(-463, 423)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_n7g77")
+metadata/_edit_lock_ = true

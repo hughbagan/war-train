@@ -1,17 +1,17 @@
 class_name Car extends CharacterBody2D
 
-@onready var level :Node2D = find_parent("Level")
-@onready var agent :NavigationAgent2D = $NavigationAgent2D
-@onready var speed_tween :Tween
+@onready var level: Node2D = find_parent("Level")
+@onready var agent: NavigationAgent2D = $NavigationAgent2D
+@onready var speed_tween: Tween
 
 var path :Array[Node] = []
 var cars :Array[Car] = []
-var current_node :int = 0
-var current_speed :float = 0.0
-var target_speed :float = current_speed
-var acceleration :float = 0.0
+var current_node: int = 0
+var current_speed: float = 0.0
+var target_speed: float = current_speed
+var acceleration: float = 0.0
 enum Throttle {HANDBRAKE = -1, BRAKE = 0, HALF_AHEAD = 1, FULL_AHEAD = 2}
-var throttle :Throttle = Throttle.BRAKE
+var throttle: Throttle = Throttle.BRAKE
 
 
 func _ready() -> void:
@@ -41,7 +41,7 @@ func set_movement_target(movement_target: Vector2) -> void:
 	agent.target_position = movement_target
 
 
-func _physics_process(delta) -> void:
+func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("throttle_up"):
 		if throttle < Throttle.FULL_AHEAD:
 			throttle = (throttle + 1) as Throttle
@@ -66,7 +66,7 @@ func _physics_process(delta) -> void:
 			target_speed = 150.0
 			acceleration = 10.0
 
-	var prev_speed = current_speed
+	var prev_speed := current_speed
 	if current_speed != target_speed:
 		current_speed += acceleration * delta
 		if abs(current_speed - target_speed) <= 5.0:
@@ -81,7 +81,7 @@ func _physics_process(delta) -> void:
 	# Advance along the path
 	elif global_position.distance_to(path[current_node].global_position) < 4.0:
 		if current_speed >= 0:
-			if current_node+1 <= path.size():
+			if current_node+1 < path.size():
 				current_node += 1
 				set_movement_target(path[current_node].global_position)
 		else:
@@ -94,7 +94,7 @@ func _physics_process(delta) -> void:
 
 	var current_agent_position: Vector2 = global_position
 	var next_path_position: Vector2 = agent.get_next_path_position()
-	var dir :Vector2 = (next_path_position - current_agent_position).normalized()
+	var dir: Vector2 = (next_path_position - current_agent_position).normalized()
 	velocity = dir * abs(current_speed)
 	move_and_slide()
 
