@@ -1,10 +1,11 @@
-extends CharacterBody2D
+class_name TrainCar extends CharacterBody2D
 
 @onready var anim:AnimatedSprite2D = $AnimatedSprite2D
 @onready var agent:NavigationAgent2D = $NavigationAgent2D
-@onready var tile_size:float = get_node("../NavigationRegion2D/TileMap").tile_set.tile_size.x
+@onready var tile_size:float = get_node("../../NavigationRegion2D/TileMap").tile_set.tile_size.x
 @onready var map:RID = get_world_2d().navigation_map
-@export var movespeed:float = 70.0
+@onready var cars:Array[Node] = get_parent().get_children()
+@export var movespeed:float = 100.0
 
 
 func _ready():
@@ -32,7 +33,7 @@ func _physics_process(_delta):
 	# 	Vector2(0, -1):
 	# 		anim.play("up")
 
-	if agent.is_navigation_finished() and velocity != Vector2():
+	if agent.is_navigation_finished() and velocity != Vector2() and cars[0] == self:
 		# try to keep going straight, or turn left or right
 		var next_point = global_position
 		match dir:
@@ -72,6 +73,11 @@ func _physics_process(_delta):
 			# continue straight
 			agent.target_position = next_point
 
+		# make the cars behind this one follow
+		var car_behind:TrainCar = get_car_behind()
+		if car_behind:
+			car_behind.follow(round_to_tile_size(global_position))
+
 	velocity = global_position.direction_to(agent.get_next_path_position()) * movespeed
 	move_and_slide()
 
@@ -84,19 +90,22 @@ func point_on_tracks(point:Vector2) -> bool:
 	return (NavigationServer2D.map_get_closest_point(map, point) - point).is_zero_approx()
 
 
+func get_car_behind() -> TrainCar:
+	for i in range(cars.size()):
+		if cars[i] == self and i < cars.size()-1:
+			return cars[i+1]
+	return null
+
+
+func follow(target_position:Vector2) -> void:
+	agent.target_position = target_position
+	var car_behind:TrainCar = get_car_behind()
+	if car_behind:
+		car_behind.follow(round_to_tile_size(global_position))
+
+
 func _on_area_2d_area_entered(area):
 	if area.name == "TrainCollision":
 		var switch_point = area.get_parent().get_point(tile_size)
 		if point_on_tracks(switch_point):
 			agent.target_position = switch_point
-	elif area.name == "EventCollision":
-		area.queue_free()
-		emit_signal("trigger_random_event")
-	elif area.name == "PyramidCollision":
-		emit_signal("trigger_major_event", "Honey")
-	elif area.name == "WaterCollision":
-		emit_signal("trigger_major_event", "Water")
-	elif area.name == "CrystalCollision":
-		emit_signal("trigger_major_event", "Crystal")
-	elif area.name == "CastleCollision":
-		emit_signal("trigger_major_event", "Castle")
