@@ -1,11 +1,11 @@
-class_name Car extends CharacterBody2D
+class_name FreeTrainCar extends CharacterBody2D
 
 @onready var level: Node2D = find_parent("Level")
 @onready var agent: NavigationAgent2D = $NavigationAgent2D
 @onready var speed_tween: Tween
 
 var path :Array[Node] = []
-var cars :Array[Car] = []
+var cars :Array[FreeTrainCar] = []
 var current_node: int = 0
 var current_speed: float = 0.0
 var target_speed: float = current_speed
@@ -17,7 +17,7 @@ var throttle: Throttle = Throttle.BRAKE
 func _ready() -> void:
 	path = level.get_node("TrainPath").get_children()
 	for node in get_parent().get_children():
-		if node is Car:
+		if node is FreeTrainCar:
 			cars.append(node)
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
@@ -108,4 +108,3 @@ func _on_area_exited(area:Area2D) -> void:
 		if cars[i] == self:
 			if area.get_parent() == cars[i-1]: # previous car is leaving, follow it
 				set_movement_target(path[current_node].global_position)
-

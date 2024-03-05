@@ -14,10 +14,7 @@ func _ready():
 
 func wait_for_navserver():
 	await get_tree().process_frame
-	agent.target_position = Vector2(
-		global_position.x+64,
-		global_position.y
-	)
+	agent.target_position = Vector2(global_position.x+64, global_position.y)
 
 
 func _physics_process(_delta):

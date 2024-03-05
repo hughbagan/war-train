@@ -1,4 +1,4 @@
-class_name GunCar extends Car
+class_name FreeGunCar extends FreeTrainCar
 
 @onready var shoot_timer: Timer = $ShootTimer
 
@@ -16,4 +16,3 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_exited(area:Area2D) -> void:
 	super(area)
-
