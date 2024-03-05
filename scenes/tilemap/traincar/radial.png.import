@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyfusej1gat13"
-path="res://.godot/imported/red_square.png-de32bd346bab9e4b262886c520b9cdb6.ctex"
+uid="uid://ct7lw4dphfbhc"
+path="res://.godot/imported/radial.png-5ffbd4bb7ccdaea7b9b773ed1b15fe3e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/red_square.png"
-dest_files=["res://.godot/imported/red_square.png-de32bd346bab9e4b262886c520b9cdb6.ctex"]
+source_file="res://scenes/tilemap/traincar/radial.png"
+dest_files=["res://.godot/imported/radial.png-5ffbd4bb7ccdaea7b9b773ed1b15fe3e.ctex"]
 
 [params]
 

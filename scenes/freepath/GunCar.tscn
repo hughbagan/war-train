@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://23cv7f2271rv"]
 
-[ext_resource type="Script" path="res://source/GunCar.gd" id="1_xy82o"]
-[ext_resource type="Texture2D" uid="uid://cs0smp5m56c18" path="res://assets/cyan_square.png" id="2_fjwye"]
+[ext_resource type="Script" path="res://scenes/freepath/GunCar.gd" id="1_xy82o"]
+[ext_resource type="Texture2D" uid="uid://cs0smp5m56c18" path="res://common/cyan_square.png" id="2_fjwye"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3hk8b"]
 size = Vector2(32, 32)

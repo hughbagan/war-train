@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs0smp5m56c18"
-path="res://.godot/imported/cyan_square.png-317b8a2d2271125924a7b35cff9680d9.ctex"
+uid="uid://cyfusej1gat13"
+path="res://.godot/imported/red_square.png-82ecc15625db8122b70a710d3dc212d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cyan_square.png"
-dest_files=["res://.godot/imported/cyan_square.png-317b8a2d2271125924a7b35cff9680d9.ctex"]
+source_file="res://common/red_square.png"
+dest_files=["res://.godot/imported/red_square.png-82ecc15625db8122b70a710d3dc212d8.ctex"]
 
 [params]
 

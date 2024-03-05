@@ -1,14 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://ci22hll1bcr4p"]
 
-[ext_resource type="Script" path="res://source/Level.gd" id="1_3ek3s"]
-[ext_resource type="PackedScene" uid="uid://c3jivqsb57pqi" path="res://source/Car.tscn" id="2_jca65"]
-[ext_resource type="PackedScene" uid="uid://23cv7f2271rv" path="res://source/GunCar.tscn" id="3_k6b10"]
-[ext_resource type="PackedScene" uid="uid://d0u2v5najtne4" path="res://source/Enemy.tscn" id="4_5yemi"]
+[ext_resource type="Script" path="res://scenes/freepath/Level.gd" id="1_3ek3s"]
+[ext_resource type="PackedScene" uid="uid://c3jivqsb57pqi" path="res://scenes/freepath/Car.tscn" id="2_jca65"]
+[ext_resource type="PackedScene" uid="uid://23cv7f2271rv" path="res://scenes/freepath/GunCar.tscn" id="3_k6b10"]
+[ext_resource type="PackedScene" uid="uid://d0u2v5najtne4" path="res://scenes/freepath/Enemy.tscn" id="4_5yemi"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_n7g77"]
 vertices = PackedVector2Array(-729, -375, 1006, -361, 1001, 561, -723, 566)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-729, -375, 1006, -361, 1001, 561, -723, 566)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_3ek3s")
