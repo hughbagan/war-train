@@ -1,6 +1,6 @@
 class_name Bullet extends CharacterBody2D
 
-const bullet_scene:PackedScene = preload("res://scenes/bullet/bullet.tscn")
+static var bullet_scene:Resource = load("res://scenes/bullet/bullet.tscn")
 const speed:float = 700.0
 var direction:Vector2
 
