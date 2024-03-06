@@ -13,7 +13,6 @@ static func construct(pos:Vector2, dir:Vector2) -> Bullet:
 
 
 func _physics_process(_delta:float) -> void:
-    print(velocity)
     velocity = direction * speed
     move_and_slide()
     var cols = get_slide_collision_count()
