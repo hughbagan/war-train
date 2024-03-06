@@ -39,6 +39,13 @@ shoot={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Level"
+2d_physics/layer_2="Cars"
+2d_physics/layer_3="PlayerBullet"
+2d_physics/layer_4="Enemy"
+
 [physics]
 
 2d/default_gravity=0.0

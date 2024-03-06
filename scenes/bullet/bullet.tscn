@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1g68hkdpudnu"]
+
+[ext_resource type="Texture2D" uid="uid://cyfusej1gat13" path="res://common/red_square.png" id="1_20rp7"]
+[ext_resource type="Script" path="res://scenes/bullet/bullet.gd" id="1_josjm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_svy3u"]
+radius = 4.0
+
+[node name="Bullet" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 8
+motion_mode = 1
+script = ExtResource("1_josjm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_svy3u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.785398
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_20rp7")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

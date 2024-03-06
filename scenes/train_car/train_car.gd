@@ -1,5 +1,6 @@
 class_name TrainCar extends CharacterBody2D
 
+@onready var level_ref:Node2D = get_node("../..")
 @onready var anim:AnimatedSprite2D = $AnimatedSprite2D
 @onready var agent:NavigationAgent2D = $NavigationAgent2D
 @onready var tile_size:float = get_node("../../NavigationRegion2D/TileMap").tile_set.tile_size.x
