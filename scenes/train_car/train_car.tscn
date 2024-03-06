@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ciilgxbyqticn"]
 
-[ext_resource type="Script" path="res://scenes/tilemap/train_car/train_car.gd" id="1_1ka1h"]
+[ext_resource type="Script" path="res://scenes/train_car/train_car.gd" id="1_1ka1h"]
 [ext_resource type="Texture2D" uid="uid://bep86hg8ml81d" path="res://common/tilemap_packed.png" id="1_5ty5e"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_utj8x"]

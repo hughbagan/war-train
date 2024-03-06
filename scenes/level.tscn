@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://drl4p4hp5nmcx"]
+[gd_scene load_steps=15 format=3 uid="uid://drl4p4hp5nmcx"]
 
 [ext_resource type="Texture2D" uid="uid://bep86hg8ml81d" path="res://common/tilemap_packed.png" id="1_rve01"]
-[ext_resource type="PackedScene" uid="uid://ciilgxbyqticn" path="res://scenes/tilemap/train_car/train_car.tscn" id="2_mdq6g"]
+[ext_resource type="PackedScene" uid="uid://ciilgxbyqticn" path="res://scenes/train_car/train_car.tscn" id="2_mdq6g"]
+[ext_resource type="PackedScene" uid="uid://b57xo4rca2lo5" path="res://scenes/gun_car/gun_car.tscn" id="3_q0ml3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cv5rf"]
 source_geometry_group_name = &"navigation_polygon_source_group"
@@ -117,12 +118,13 @@ format = 2
 layer_0/tile_data = PackedInt32Array(131081, 655360, 5, 131082, 655360, 5, 131083, 720896, 5, 196619, 720896, 6, 262155, 720896, 6, 131080, 655360, 5, 131079, 589824, 5, 196615, 720896, 6, 262151, 720896, 6, 327687, 589824, 7, 327688, 655360, 7, 327689, 655360, 7, 327690, 655360, 7, 327691, 720896, 7)
 
 [node name="Train" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="TrainCar" parent="Train" instance=ExtResource("2_mdq6g")]
 position = Vector2(672, 160)
 
-[node name="TrainCar2" parent="Train" instance=ExtResource("2_mdq6g")]
+[node name="GunCar" parent="Train" instance=ExtResource("3_q0ml3")]
 position = Vector2(608, 160)
 
-[node name="TrainCar3" parent="Train" instance=ExtResource("2_mdq6g")]
+[node name="GunCar2" parent="Train" instance=ExtResource("3_q0ml3")]
 position = Vector2(544, 160)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b8ptgdjo855n0"]
 
-[ext_resource type="Script" path="res://scenes/tilemap/switch/switch.gd" id="1_pf3no"]
-[ext_resource type="Texture2D" uid="uid://bfwrpyf3omjpr" path="res://scenes/tilemap/switch/arrow.png" id="2_h8e6w"]
+[ext_resource type="Script" path="res://scenes/switch/switch.gd" id="1_pf3no"]
+[ext_resource type="Texture2D" uid="uid://bfwrpyf3omjpr" path="res://scenes/switch/arrow.png" id="2_h8e6w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b53p7"]
 size = Vector2(4, 4)
