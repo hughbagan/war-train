@@ -6,7 +6,11 @@ class_name TrainCar extends CharacterBody2D
 @onready var tile_size:float = get_node("../../NavigationRegion2D/TileMap").tile_set.tile_size.x
 @onready var map:RID = get_world_2d().navigation_map
 @onready var cars:Array[Node] = get_parent().get_children()
-@export var movespeed:float = 100.0
+var current_speed:float = 0.0
+var target_speed:float = 0.0
+var acceleration:float = 0.0
+enum Throttle {HANDBRAKE=-1, BRAKE=0, HALF_AHEAD=1, FULL_AHEAD=2}
+var throttle:Throttle = Throttle.BRAKE
 
 
 func _ready():
@@ -19,6 +23,23 @@ func wait_for_navserver():
 
 
 func _physics_process(_delta):
+	if Input.is_action_just_pressed("throttle_up"):
+		if throttle < Throttle.FULL_AHEAD:
+			throttle = (throttle+1) as Throttle
+	if Input.is_action_just_pressed("throttle_down"):
+		if throttle > Throttle.HANDBRAKE:
+			throttle = (throttle-1) as Throttle
+	match(throttle):
+		Throttle.HANDBRAKE:
+			target_speed = -50.0
+			acceleration = -15.0
+		Throttle.BRAKE:
+			target_speed = 0.0
+			if current_speed > 0:
+				acceleration = -10.0
+			else:
+				acceleration = 5.0
+
 	var dir = velocity.normalized().round()
 
 	# match dir:
@@ -71,17 +92,17 @@ func _physics_process(_delta):
 			# continue straight
 			agent.target_position = next_point
 
-		# make the cars behind this one follow
+		# make the cars behind this one follow_behind
 		var car_behind:TrainCar = get_car_behind()
 		if car_behind:
-			car_behind.follow(round_to_tile_size(global_position))
+			car_behind.follow_behind(round_to_tile_size(global_position))
 
 	velocity = global_position.direction_to(agent.get_next_path_position()) * movespeed
 	move_and_slide()
 
 
 func round_to_tile_size(point:Vector2) -> Vector2:
-	return point.snapped(Vector2(tile_size*0.5, tile_size*0.5))
+	return point.snapped(Vector2(tile_size*0.5, tile_size*0.5)) # middle of tile
 
 
 func point_on_tracks(point:Vector2) -> bool:
@@ -95,11 +116,11 @@ func get_car_behind() -> TrainCar:
 	return null
 
 
-func follow(target_position:Vector2) -> void:
+func follow_behind(target_position:Vector2) -> void:
 	agent.target_position = target_position
 	var car_behind:TrainCar = get_car_behind()
 	if car_behind:
-		car_behind.follow(round_to_tile_size(global_position))
+		car_behind.follow_behind(round_to_tile_size(global_position))
 
 
 func _on_area_2d_area_entered(area):
