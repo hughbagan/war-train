@@ -19,10 +19,14 @@ func _ready():
 
 func wait_for_navserver():
 	await get_tree().process_frame
+	# FIXME: wont always be going to the right to start
 	agent.target_position = Vector2(global_position.x+64, global_position.y)
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
+	var dir = velocity.normalized().round()
+
+	# Throttling
 	if Input.is_action_just_pressed("throttle_up"):
 		if throttle < Throttle.FULL_AHEAD:
 			throttle = (throttle+1) as Throttle
@@ -31,53 +35,79 @@ func _physics_process(_delta):
 			throttle = (throttle-1) as Throttle
 	match(throttle):
 		Throttle.HANDBRAKE:
-			target_speed = -50.0
+			target_speed = -30.0
 			acceleration = -15.0
 		Throttle.BRAKE:
 			target_speed = 0.0
-			if current_speed > 0:
+			if current_speed > 0.0:
 				acceleration = -10.0
+		Throttle.HALF_AHEAD:
+			target_speed = 30.0
+			if current_speed > target_speed:
+				acceleration = -5.0
 			else:
 				acceleration = 5.0
+		Throttle.FULL_AHEAD:
+			target_speed = 80.0
+			acceleration = 10.0
+	var prev_speed := current_speed
+	if current_speed != target_speed:
+		current_speed += acceleration * delta
+		if abs(current_speed - target_speed) < 5.0: # clamp
+			current_speed = target_speed
 
-	var dir = velocity.normalized().round()
+	# Reversing (forward is default)
+	if ((current_speed < 0 and prev_speed >= 0) \
+	or (current_speed > 0 and prev_speed < 0)):
+		if cars[0] == self:
+			cars.reverse()
+			var new_agent_target:Vector2 = cars[0].global_position
+			match dir:
+				Vector2(1, 0):
+					new_agent_target.x -= tile_size
+				Vector2(-1, 0):
+					new_agent_target.x += tile_size
+				Vector2(0, 1):
+					new_agent_target.y -= tile_size
+				Vector2(0, -1):
+					new_agent_target.y += tile_size
+				_:
+					assert(false)
+			print(cars)
+			cars[0].agent.target_position = round_to_tile(new_agent_target)
+			var car_behind:TrainCar = cars[0].get_car_behind()
+			if car_behind:
+				car_behind.follow_behind(round_to_tile(cars[0].global_position))
+		else:
+			cars.reverse()
 
-	# match dir:
-	# 	Vector2(1, 0):
-	# 		anim.play("right")
-	# 	Vector2(-1, 0):
-	# 		anim.play("left")
-	# 	Vector2(0, 1):
-	# 		anim.play("down")
-	# 	Vector2(0, -1):
-	# 		anim.play("up")
-
+	# Handle next track tile
 	if agent.is_navigation_finished() and velocity != Vector2() and cars[0] == self:
 		# try to keep going straight, or turn left or right
 		var next_point = global_position
 		match dir:
 			Vector2(1, 0):
-				next_point = Vector2(next_point.x + tile_size, next_point.y)
+				next_point.x += tile_size
 			Vector2(-1, 0):
-				next_point = Vector2(next_point.x - tile_size, next_point.y)
+				next_point.x -= tile_size
 			Vector2(0, 1):
-				next_point = Vector2(next_point.x, next_point.y + tile_size)
+				next_point.y += tile_size
 			Vector2(0, -1):
-				next_point = Vector2(next_point.x, next_point.y - tile_size)
-		next_point = round_to_tile_size(next_point)
+				next_point.y -= tile_size
+		next_point = round_to_tile(next_point)
 		if not point_on_tracks(next_point):
 			# assuming we hit a corner -- we need to turn!
-			var point1
-			var point2
+			var point1 = global_position
+			var point2 = global_position
 			match dir:
 				Vector2(1, 0), Vector2(-1, 0):
-					point1 = Vector2(global_position.x, global_position.y + tile_size)
-					point2 = Vector2(global_position.x, global_position.y - tile_size)
+					point1.y += tile_size
+					point2.y -= tile_size
 				Vector2(0, 1), Vector2(0, -1):
-					point1 = Vector2(global_position.x + tile_size, global_position.y)
-					point2 = Vector2(global_position.x - tile_size, global_position.y)
-			point1 = round_to_tile_size(point1)
-			point2 = round_to_tile_size(point2)
+					point1.x += tile_size
+					point2.x -= tile_size
+			point1 = round_to_tile(point1)
+			point2 = round_to_tile(point2)
 			var valid1 = point_on_tracks(point1)
 			var valid2 = point_on_tracks(point2)
 			if (valid1 and not valid2) \
@@ -95,14 +125,26 @@ func _physics_process(_delta):
 		# make the cars behind this one follow_behind
 		var car_behind:TrainCar = get_car_behind()
 		if car_behind:
-			car_behind.follow_behind(round_to_tile_size(global_position))
+			car_behind.follow_behind(round_to_tile(global_position))
 
-	velocity = global_position.direction_to(agent.get_next_path_position()) * movespeed
+	velocity = global_position.direction_to(agent.get_next_path_position()) * abs(current_speed)
 	move_and_slide()
 
+	# match dir:
+	# 	Vector2(1, 0):
+	# 		anim.play("right")
+	# 	Vector2(-1, 0):
+	# 		anim.play("left")
+	# 	Vector2(0, 1):
+	# 		anim.play("down")
+	# 	Vector2(0, -1):
+	# 		anim.play("up")
 
-func round_to_tile_size(point:Vector2) -> Vector2:
-	return point.snapped(Vector2(tile_size*0.5, tile_size*0.5)) # middle of tile
+
+func round_to_tile(point:Vector2) -> Vector2:
+	var x = (floor(point.x/tile_size)*tile_size) + tile_size*0.5
+	var y = (floor(point.y/tile_size)*tile_size) + tile_size*0.5
+	return Vector2(x, y) # middle of the tile
 
 
 func point_on_tracks(point:Vector2) -> bool:
@@ -120,7 +162,7 @@ func follow_behind(target_position:Vector2) -> void:
 	agent.target_position = target_position
 	var car_behind:TrainCar = get_car_behind()
 	if car_behind:
-		car_behind.follow_behind(round_to_tile_size(global_position))
+		car_behind.follow_behind(round_to_tile(global_position))
 
 
 func _on_area_2d_area_entered(area):
