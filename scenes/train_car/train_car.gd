@@ -50,36 +50,10 @@ func _physics_process(delta):
 		Throttle.FULL_AHEAD:
 			target_speed = 80.0
 			acceleration = 10.0
-	var prev_speed := current_speed
 	if current_speed != target_speed:
 		current_speed += acceleration * delta
 		if abs(current_speed - target_speed) < 5.0: # clamp
 			current_speed = target_speed
-
-	# Reversing (forward is default)
-	if ((current_speed < 0 and prev_speed >= 0) \
-	or (current_speed > 0 and prev_speed < 0)):
-		if cars[0] == self:
-			cars.reverse()
-			var new_agent_target:Vector2 = cars[0].global_position
-			match dir:
-				Vector2(1, 0):
-					new_agent_target.x -= tile_size
-				Vector2(-1, 0):
-					new_agent_target.x += tile_size
-				Vector2(0, 1):
-					new_agent_target.y -= tile_size
-				Vector2(0, -1):
-					new_agent_target.y += tile_size
-				_:
-					assert(false)
-			print(cars)
-			cars[0].agent.target_position = round_to_tile(new_agent_target)
-			var car_behind:TrainCar = cars[0].get_car_behind()
-			if car_behind:
-				car_behind.follow_behind(round_to_tile(cars[0].global_position))
-		else:
-			cars.reverse()
 
 	# Handle next track tile
 	if agent.is_navigation_finished() and velocity != Vector2() and cars[0] == self:
