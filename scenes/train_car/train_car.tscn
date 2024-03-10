@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ciilgxbyqticn"]
 
 [ext_resource type="Script" path="res://scenes/train_car/train_car.gd" id="1_1ka1h"]
-[ext_resource type="Texture2D" uid="uid://bep86hg8ml81d" path="res://common/tilemap_packed.png" id="1_5ty5e"]
+[ext_resource type="Texture2D" uid="uid://b2lnapbnridjp" path="res://common/train.png" id="2_lf2xj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_utj8x"]
 
@@ -25,8 +25,9 @@ position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_utj8x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_5ty5e")
-region_enabled = true
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_lf2xj")
 region_rect = Rect2(448, 256, 64, 64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -40,5 +41,8 @@ target_desired_distance = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_u7d6r")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

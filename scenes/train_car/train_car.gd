@@ -1,20 +1,25 @@
 class_name TrainCar extends CharacterBody2D
 
-@onready var level_ref:Node2D = get_node("../..")
+@onready var level_ref:Node2D = find_parent("Level")
 @onready var anim:AnimatedSprite2D = $AnimatedSprite2D
 @onready var agent:NavigationAgent2D = $NavigationAgent2D
-@onready var tile_size:float = get_node("../../NavigationRegion2D/TileMap").tile_set.tile_size.x
+@onready var tile_size:float = level_ref.get_node("NavigationRegion2D/TileMap").tile_set.tile_size.x
 @onready var map:RID = get_world_2d().navigation_map
 @onready var cars:Array[Node] = get_parent().get_children()
+@onready var camera:Camera2D = $Camera2D
 var current_speed:float = 0.0
 var target_speed:float = 0.0
 var acceleration:float = 0.0
 enum Throttle {HANDBRAKE=-1, BRAKE=0, HALF_AHEAD=1, FULL_AHEAD=2}
 var throttle:Throttle = Throttle.BRAKE
+var hp = 100.0
 
 
 func _ready():
 	call_deferred("wait_for_navserver")
+	if cars[0] == self:
+		camera.enabled = true
+		camera.make_current()
 
 
 func wait_for_navserver():
@@ -42,13 +47,13 @@ func _physics_process(delta):
 			if current_speed > 0.0:
 				acceleration = -10.0
 		Throttle.HALF_AHEAD:
-			target_speed = 30.0
+			target_speed = 50.0
 			if current_speed > target_speed:
 				acceleration = -5.0
 			else:
 				acceleration = 5.0
 		Throttle.FULL_AHEAD:
-			target_speed = 80.0
+			target_speed = 100.0
 			acceleration = 10.0
 	if current_speed != target_speed:
 		current_speed += acceleration * delta
