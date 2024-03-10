@@ -7,12 +7,14 @@ class_name TrainCar extends CharacterBody2D
 @onready var map:RID = get_world_2d().navigation_map
 @onready var cars:Array[Node] = get_parent().get_children()
 @onready var camera:Camera2D = $Camera2D
+@onready var sprite:Sprite2D = $Sprite2D
 var current_speed:float = 0.0
 var target_speed:float = 0.0
 var acceleration:float = 0.0
 enum Throttle {HANDBRAKE=-1, BRAKE=0, HALF_AHEAD=1, FULL_AHEAD=2}
 var throttle:Throttle = Throttle.BRAKE
-var hp = 100.0
+var hp:float = 100.0
+var dead:bool = false
 
 
 func _ready():
@@ -28,7 +30,26 @@ func wait_for_navserver():
 	agent.target_position = Vector2(global_position.x+64, global_position.y)
 
 
+func _process(_delta):
+	# match dir:
+	# 	Vector2(1, 0):
+	# 		anim.play("right")
+	# 	Vector2(-1, 0):
+	# 		anim.play("left")
+	# 	Vector2(0, 1):
+	# 		anim.play("down")
+	# 	Vector2(0, -1):
+	# 		anim.play("up")
+	if dead:
+		sprite.modulate = Color(0.5, hp/100.0, hp/100.0)
+	else:
+		sprite.modulate = Color(1.0, hp/100.0, hp/100.0)
+
+
 func _physics_process(delta):
+	if dead:
+		pass
+
 	var dir = velocity.normalized().round()
 
 	# Throttling
@@ -109,16 +130,6 @@ func _physics_process(delta):
 	velocity = global_position.direction_to(agent.get_next_path_position()) * abs(current_speed)
 	move_and_slide()
 
-	# match dir:
-	# 	Vector2(1, 0):
-	# 		anim.play("right")
-	# 	Vector2(-1, 0):
-	# 		anim.play("left")
-	# 	Vector2(0, 1):
-	# 		anim.play("down")
-	# 	Vector2(0, -1):
-	# 		anim.play("up")
-
 
 func round_to_tile(point:Vector2) -> Vector2:
 	var x = (floor(point.x/tile_size)*tile_size) + tile_size*0.5
@@ -149,3 +160,11 @@ func _on_area_2d_area_entered(area):
 		var switch_point = area.get_parent().get_point(tile_size)
 		if point_on_tracks(switch_point):
 			agent.target_position = switch_point
+
+
+func hit(dmg:float) -> void:
+	if hp > 0.0:
+		hp -= dmg
+	if hp <= 0.0:
+		dead = true
+	print("hit ", hp)

@@ -4,10 +4,11 @@ class_name GunCar extends TrainCar
 @onready var barrel:Node2D = $Turret/Barrel
 var shoot_timer:float = 0.0
 var burst_timer:float = 0.0
-var shoot_interval:float = 1.5 # time between rounds in seconds
-var burst_interval:float = 0.05 # time between individual shots
+var shoot_interval:float = 1.0 # time between rounds in seconds
+var burst_interval:float = 0.25 # time between individual shots
 var burst_rounds:int = 0
-var burst_max:int = 4
+var burst_max:int = 2
+var damage:float = 1.0
 
 
 func _ready():
@@ -27,7 +28,10 @@ func _physics_process(delta):
 		if shoot_timer >= shoot_interval and burst_rounds == 0:
 			burst_rounds = burst_max
 		elif shoot_timer >= shoot_interval and burst_rounds > 0 and burst_timer >= burst_interval:
-			level_ref.add_child(Bullet.construct(barrel.global_position, dir_to_mouse))
+			level_ref.add_child(Bullet.construct(
+				barrel.global_position,
+				dir_to_mouse,
+				damage))
 			burst_timer = 0.0
 			burst_rounds -= 1
 			if burst_rounds == 0:
