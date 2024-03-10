@@ -1,16 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://b57xo4rca2lo5"]
+[gd_scene load_steps=5 format=3 uid="uid://b57xo4rca2lo5"]
 
 [ext_resource type="PackedScene" uid="uid://ciilgxbyqticn" path="res://scenes/train_car/train_car.tscn" id="1_5n6qi"]
 [ext_resource type="Script" path="res://scenes/gun_car/gun_car.gd" id="1_bxiu4"]
 [ext_resource type="Texture2D" uid="uid://bep86hg8ml81d" path="res://common/tilemap_packed.png" id="3_5cg8p"]
+[ext_resource type="Texture2D" uid="uid://cg54fn6jm8cs" path="res://common/car.png" id="3_hw2h2"]
 
 [node name="GunCar" instance=ExtResource("1_5n6qi")]
 script = ExtResource("1_bxiu4")
 
 [node name="Sprite2D" parent="." index="1"]
-texture_filter = 1
+texture = ExtResource("3_hw2h2")
 
-[node name="Turret" type="Sprite2D" parent="." index="5"]
+[node name="Turret" type="Sprite2D" parent="." index="6"]
 texture_filter = 1
 texture = ExtResource("3_5cg8p")
 offset = Vector2(0, 16)
@@ -18,8 +19,5 @@ region_enabled = true
 region_rect = Rect2(320, 640, 64, 64)
 
 [node name="Barrel" type="Node2D" parent="Turret" index="0"]
-position = Vector2(0, 36)
-
-[node name="ShootTimer" type="Timer" parent="." index="6"]
-wait_time = 0.25
-one_shot = true
+z_index = 2
+position = Vector2(0, 44)
