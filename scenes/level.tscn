@@ -241,8 +241,6 @@ position = Vector2(160, 352)
 
 [node name="GunCar" parent="Train" instance=ExtResource("3_q0ml3")]
 position = Vector2(96, 352)
-collision_layer = 1
-collision_mask = 0
 motion_mode = 0
 
 [node name="Enemy" parent="." instance=ExtResource("6_4tcys")]

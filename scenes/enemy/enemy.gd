@@ -38,7 +38,7 @@ func _physics_process(_delta):
                         col.hit(damage)
 
 
-func _on_sentry_area_body_entered(body:Node2D):
+func _on_sentry_area_body_entered(body:PhysicsBody2D):
     print(body)
     if body is TrainCar:
         print("    ", body)
