@@ -39,9 +39,7 @@ func _physics_process(_delta):
 
 
 func _on_sentry_area_body_entered(body:PhysicsBody2D):
-    print(body)
     if body is TrainCar:
-        print("    ", body)
         state = States.FOLLOW
         following = body
 

@@ -128,7 +128,11 @@ func _physics_process(delta):
 			car_behind.follow_behind(round_to_tile(global_position))
 
 	velocity = global_position.direction_to(agent.get_next_path_position()) * abs(current_speed)
-	move_and_slide()
+	var col = move_and_collide(velocity * delta)
+	if col:
+		# var collider = col.get_collider()
+		# collider.velocity = col.get_travel()
+		move_and_collide(col.get_travel())
 
 
 func round_to_tile(point:Vector2) -> Vector2:
