@@ -12,8 +12,9 @@ var current_speed:float = 0.0
 var target_speed:float = 0.0
 var acceleration:float = 0.0
 enum Throttle {HANDBRAKE=-1, BRAKE=0, HALF_AHEAD=1, FULL_AHEAD=2}
-var throttle:Throttle = Throttle.BRAKE
+var throttle:Throttle = Throttle.FULL_AHEAD
 var hp:float = 100.0
+var collided:bool = false
 var dead:bool = false
 
 
@@ -76,7 +77,11 @@ func _physics_process(delta):
 		Throttle.FULL_AHEAD:
 			target_speed = 100.0
 			acceleration = 10.0
-	if current_speed != target_speed:
+	if collided and current_speed > (target_speed/2):
+		acceleration = -10.0
+		current_speed += acceleration * delta
+		collided = false
+	elif current_speed != target_speed:
 		current_speed += acceleration * delta
 		if abs(current_speed - target_speed) < 5.0: # clamp
 			current_speed = target_speed
@@ -128,11 +133,7 @@ func _physics_process(delta):
 			car_behind.follow_behind(round_to_tile(global_position))
 
 	velocity = global_position.direction_to(agent.get_next_path_position()) * abs(current_speed)
-	var col = move_and_collide(velocity * delta)
-	if col:
-		# var collider = col.get_collider()
-		# collider.velocity = col.get_travel()
-		move_and_collide(col.get_travel())
+	move_and_slide()
 
 
 func round_to_tile(point:Vector2) -> Vector2:
@@ -171,4 +172,5 @@ func hit(dmg:float) -> void:
 		hp -= dmg
 	if hp <= 0.0:
 		dead = true
-	print("hit ", hp)
+	for car in cars:
+		car.collided = true

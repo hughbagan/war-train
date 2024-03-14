@@ -6,9 +6,9 @@ var following:Node2D
 @onready var sprite:Sprite2D = $Sprite2D
 @onready var size:float = sprite.texture.get_size().x
 var scale_x:float = 0.0
-var movespeed:float = 100.0
+var movespeed:float = 50.0
 var hp:float = 4.0
-var damage:float = 1.0
+var damage:float = 0.1
 
 
 func _ready():
@@ -34,8 +34,9 @@ func _physics_process(_delta):
             if cols > 0:
                 for i in range(cols):
                     var col = get_slide_collision(i)
-                    if col is TrainCar:
-                        col.hit(damage)
+                    var collider = col.get_collider()
+                    if collider is TrainCar:
+                        collider.hit(damage)
 
 
 func _on_sentry_area_body_entered(body:PhysicsBody2D):
