@@ -29,6 +29,7 @@ func _physics_process(delta):
 			burst_rounds = burst_max
 		elif shoot_timer >= shoot_interval and burst_rounds > 0 and burst_timer >= burst_interval:
 			level_ref.add_child(Bullet.construct(
+				self,
 				barrel.global_position,
 				dir_to_mouse,
 				damage))

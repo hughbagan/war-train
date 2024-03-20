@@ -3,11 +3,11 @@ class_name Enemy extends CharacterBody2D
 enum States {SENTRY, FOLLOW}
 var state:States = States.SENTRY
 var following:Node2D
-@onready var sprite:Sprite2D = $Sprite2D
-@onready var size:float = sprite.texture.get_size().x
+@onready var sprite:AnimatedSprite2D = $AnimatedSprite2D
+@onready var size:float = sprite.sprite_frames.get_frame_texture('default', 0).get_size().x
 var scale_x:float = 0.0
 var movespeed:float = 50.0
-var hp:float = 4.0
+var hp:float = 2.0
 var damage:float = 0.1
 
 
@@ -16,10 +16,17 @@ func _ready():
 
 
 func _process(delta):
-    # make the sprite "breathe"
-    scale_x += delta
-    var sin_x = (sin(scale_x*2)+16)/16
-    sprite.scale = Vector2(sin_x, sin_x)
+    match(state):
+        States.SENTRY:
+            # make the sprite "breathe"
+            scale_x += delta
+            var sin_x = (sin(scale_x*2)+16)/16
+            sprite.scale = Vector2(sin_x, sin_x)
+        States.FOLLOW:
+            # breathe faster
+            scale_x += delta
+            var sin_x = (sin(scale_x*8)+8)/8
+            sprite.scale = Vector2(sin_x, sin_x)
 
 
 func _physics_process(_delta):
@@ -39,13 +46,19 @@ func _physics_process(_delta):
                         collider.hit(damage)
 
 
+func state_follow(follow_node:Node2D) -> void:
+    state = States.FOLLOW
+    following = follow_node
+    sprite.play()
+
+
 func _on_sentry_area_body_entered(body:PhysicsBody2D):
     if body is TrainCar:
-        state = States.FOLLOW
-        following = body
+        state_follow(body)
 
 
-func hit(dmg:int) -> void:
+func hit(bullet_owner:Node2D, dmg:int) -> void:
     hp -= dmg
     if hp <= 0:
         queue_free()
+    state_follow(bullet_owner)
