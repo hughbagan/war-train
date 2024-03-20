@@ -1,11 +1,11 @@
 class_name TrainCar extends CharacterBody2D
 
 @onready var level_ref:Node2D = find_parent("Level")
-@onready var anim:AnimatedSprite2D = $AnimatedSprite2D
-@onready var agent:NavigationAgent2D = $NavigationAgent2D
 @onready var tile_size:float = level_ref.get_node("NavigationRegion2D/TileMap").tile_set.tile_size.x
 @onready var map:RID = get_world_2d().navigation_map
 @onready var cars:Array[Node] = get_parent().get_children()
+@onready var anim:AnimatedSprite2D = $AnimatedSprite2D
+@onready var agent:NavigationAgent2D = $NavigationAgent2D
 @onready var camera:Camera2D = $Camera2D
 @onready var sprite:Sprite2D = $Sprite2D
 var current_speed:float = 0.0
@@ -16,7 +16,7 @@ var throttle:Throttle = Throttle.FULL_AHEAD
 var hp:float = 100.0
 var collided:bool = false
 var dead:bool = false
-signal screen_exited
+signal level_camera_exited
 
 
 func _ready():
@@ -136,6 +136,9 @@ func _physics_process(delta):
 	velocity = global_position.direction_to(agent.get_next_path_position()) * abs(current_speed)
 	move_and_slide()
 
+	if level_ref.outside_camera(global_position):
+		emit_signal("level_camera_exited", global_position)
+
 
 func round_to_tile(point:Vector2) -> Vector2:
 	var x = (floor(point.x/tile_size)*tile_size) + tile_size*0.5
@@ -175,7 +178,3 @@ func hit(dmg:float) -> void:
 		dead = true
 	for car in cars:
 		car.collided = true
-
-
-func _on_visible_on_screen_notifier_2d_screen_exited():
-	emit_signal("screen_exited", global_position)
