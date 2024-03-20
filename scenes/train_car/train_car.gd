@@ -20,9 +20,9 @@ var dead:bool = false
 
 func _ready():
 	call_deferred("wait_for_navserver")
-	if cars[0] == self:
-		camera.enabled = true
-		camera.make_current()
+	# if cars[0] == self:
+	# 	camera.enabled = true
+	# 	camera.make_current()
 
 
 func wait_for_navserver():
@@ -69,13 +69,13 @@ func _physics_process(delta):
 			if current_speed > 0.0:
 				acceleration = -10.0
 		Throttle.HALF_AHEAD:
-			target_speed = 50.0
+			target_speed = 30.0
 			if current_speed > target_speed:
 				acceleration = -5.0
 			else:
 				acceleration = 5.0
 		Throttle.FULL_AHEAD:
-			target_speed = 100.0
+			target_speed = 60.0
 			acceleration = 10.0
 	if collided and current_speed > (target_speed/2):
 		acceleration = -10.0

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bep86hg8ml81d" path="res://common/tilemap_packed.png" id="1_t5svi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u850k"]
-radius = 32.0
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1f3qq"]
 radius = 512.0
@@ -20,7 +20,7 @@ script = ExtResource("1_7vgbm")
 texture_filter = 1
 texture = ExtResource("1_t5svi")
 region_enabled = true
-region_rect = Rect2(64, 640, 64, 64)
+region_rect = Rect2(32, 320, 32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_u850k")

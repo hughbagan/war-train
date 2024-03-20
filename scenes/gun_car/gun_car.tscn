@@ -14,9 +14,9 @@ texture = ExtResource("3_hw2h2")
 [node name="Turret" type="Sprite2D" parent="." index="6"]
 texture_filter = 1
 texture = ExtResource("3_5cg8p")
-offset = Vector2(0, 16)
+offset = Vector2(0, 8)
 region_enabled = true
-region_rect = Rect2(320, 640, 64, 64)
+region_rect = Rect2(160, 320, 32, 32)
 
 [node name="Barrel" type="Node2D" parent="Turret" index="0"]
 z_index = 2
