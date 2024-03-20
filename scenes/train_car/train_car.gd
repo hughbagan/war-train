@@ -16,6 +16,7 @@ var throttle:Throttle = Throttle.FULL_AHEAD
 var hp:float = 100.0
 var collided:bool = false
 var dead:bool = false
+signal screen_exited
 
 
 func _ready():
@@ -174,3 +175,7 @@ func hit(dmg:float) -> void:
 		dead = true
 	for car in cars:
 		car.collided = true
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	emit_signal("screen_exited", global_position)
