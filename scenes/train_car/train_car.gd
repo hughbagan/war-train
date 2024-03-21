@@ -45,6 +45,7 @@ func _physics_process(delta):
 
 	var dir = velocity.normalized().round()
 
+	# Adjust speed based on the brake and hostile collisions
 	target_speed = round(abs(MAX_SPEED - (brake_magnitude*MAX_SPEED)))
 	acceleration = (target_speed - current_speed)/6
 	if collided and current_speed > (MAX_SPEED/2):
