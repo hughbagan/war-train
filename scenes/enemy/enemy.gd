@@ -1,13 +1,13 @@
 class_name Enemy extends CharacterBody2D
 
+@onready var sprite:AnimatedSprite2D = $AnimatedSprite2D
+@onready var size:float = sprite.sprite_frames.get_frame_texture('default', 0).get_size().x
 enum States {SENTRY, FOLLOW}
 var state:States = States.SENTRY
 var following:Node2D
-@onready var sprite:AnimatedSprite2D = $AnimatedSprite2D
-@onready var size:float = sprite.sprite_frames.get_frame_texture('default', 0).get_size().x
 var scale_x:float = 0.0
 var movespeed:float = 50.0
-var hp:float = 2.0
+var hp:float = 4.0
 var damage:float = 0.1
 
 

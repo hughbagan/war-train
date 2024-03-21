@@ -2,7 +2,7 @@ class_name Bullet extends CharacterBody2D
 
 @onready var level_ref:Node2D = find_parent("Level")
 static var bullet_scene:Resource = load("res://scenes/bullet/bullet.tscn")
-const speed:float = 1000.0
+const speed:float = 100.0
 var creator:Node2D
 var direction:Vector2
 var damage:float

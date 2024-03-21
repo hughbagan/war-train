@@ -4,11 +4,11 @@ class_name GunCar extends TrainCar
 @onready var barrel:Node2D = $Turret/Barrel
 var shoot_timer:float = 0.0
 var burst_timer:float = 0.0
-var shoot_interval:float = 1.0 # time between rounds in seconds
-var burst_interval:float = 0.25 # time between individual shots
-var burst_rounds:int = 0
-var burst_max:int = 2
-var damage:float = 1.0
+var shoot_interval:float = 0.25 # time between rounds in seconds
+var burst_interval:float = 0.01 # time between individual shots
+var burst_max:int = 1 # total number of rounds in a mag
+var burst_rounds:int = 0 # number of rounds left in the mag
+var damage:float = 1.0 # passed to bullet
 
 
 func _ready():
