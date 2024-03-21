@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://drl4p4hp5nmcx"]
+[gd_scene load_steps=29 format=3 uid="uid://drl4p4hp5nmcx"]
 
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_b65qk"]
 [ext_resource type="Texture2D" uid="uid://bep86hg8ml81d" path="res://common/tilemap_packed.png" id="1_rve01"]
+[ext_resource type="PackedScene" uid="uid://b5qf21tf7jh4k" path="res://scenes/brake_lever/brake_lever.tscn" id="2_1n3ws"]
 [ext_resource type="PackedScene" uid="uid://ciilgxbyqticn" path="res://scenes/train_car/train_car.tscn" id="2_mdq6g"]
 [ext_resource type="Texture2D" uid="uid://pv2x1gar1yd2" path="res://common/tilemap_packed_edit.png" id="2_wc3kg"]
 [ext_resource type="PackedScene" uid="uid://b57xo4rca2lo5" path="res://scenes/gun_car/gun_car.tscn" id="3_q0ml3"]
@@ -210,17 +211,23 @@ sources/1 = SubResource("TileSetAtlasSource_cl7d2")
 [node name="Level" type="Node2D"]
 script = ExtResource("1_b65qk")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Background" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="Background"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="BrakeLever" parent="UI" instance=ExtResource("2_1n3ws")]
+position = Vector2(32, 608)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -253,18 +260,24 @@ position = Vector2(16, 48)
 
 [node name="Enemy" parent="." instance=ExtResource("6_4tcys")]
 position = Vector2(512, 224)
+metadata/_edit_lock_ = true
 
 [node name="Enemy3" parent="." instance=ExtResource("6_4tcys")]
 position = Vector2(224, 256)
+metadata/_edit_lock_ = true
 
 [node name="Enemy4" parent="." instance=ExtResource("6_4tcys")]
 position = Vector2(512, 336)
+metadata/_edit_lock_ = true
 
 [node name="Enemy5" parent="." instance=ExtResource("6_4tcys")]
 position = Vector2(96, 416)
+metadata/_edit_lock_ = true
 
 [node name="Enemy6" parent="." instance=ExtResource("6_4tcys")]
 position = Vector2(288, 528)
+metadata/_edit_lock_ = true
 
 [node name="Enemy2" parent="." instance=ExtResource("6_4tcys")]
 position = Vector2(576, 128)
+metadata/_edit_lock_ = true

@@ -8,11 +8,12 @@ class_name TrainCar extends CharacterBody2D
 @onready var agent:NavigationAgent2D = $NavigationAgent2D
 @onready var camera:Camera2D = $Camera2D
 @onready var sprite:Sprite2D = $Sprite2D
+const MAX_SPEED:float = 60.0
 var current_speed:float = 0.0
 var target_speed:float = 0.0
 var acceleration:float = 0.0
-enum Throttle {HANDBRAKE=-1, BRAKE=0, HALF_AHEAD=1, FULL_AHEAD=2}
-var throttle:Throttle = Throttle.FULL_AHEAD
+var braking:bool = true
+var brake_magnitude:float = 1.0
 var hp:float = 100.0
 var collided:bool = false
 var dead:bool = false
@@ -20,10 +21,9 @@ signal level_camera_exited
 
 
 func _ready():
+	await level_ref.ready
+	level_ref.brake_lever.brake.connect(_on_brake)
 	call_deferred("wait_for_navserver")
-	# if cars[0] == self:
-	# 	camera.enabled = true
-	# 	camera.make_current()
 
 
 func wait_for_navserver():
@@ -33,15 +33,6 @@ func wait_for_navserver():
 
 
 func _process(_delta):
-	# match dir:
-	# 	Vector2(1, 0):
-	# 		anim.play("right")
-	# 	Vector2(-1, 0):
-	# 		anim.play("left")
-	# 	Vector2(0, 1):
-	# 		anim.play("down")
-	# 	Vector2(0, -1):
-	# 		anim.play("up")
 	if dead:
 		sprite.modulate = Color(0.5, hp/100.0, hp/100.0)
 	else:
@@ -54,34 +45,12 @@ func _physics_process(delta):
 
 	var dir = velocity.normalized().round()
 
-	# Throttling
-	if Input.is_action_just_pressed("throttle_up"):
-		if throttle < Throttle.FULL_AHEAD:
-			throttle = (throttle+1) as Throttle
-	if Input.is_action_just_pressed("throttle_down"):
-		if throttle > Throttle.HANDBRAKE:
-			throttle = (throttle-1) as Throttle
-	match(throttle):
-		Throttle.HANDBRAKE:
-			target_speed = -30.0
-			acceleration = -15.0
-		Throttle.BRAKE:
-			target_speed = 0.0
-			if current_speed > 0.0:
-				acceleration = -10.0
-		Throttle.HALF_AHEAD:
-			target_speed = 30.0
-			if current_speed > target_speed:
-				acceleration = -5.0
-			else:
-				acceleration = 5.0
-		Throttle.FULL_AHEAD:
-			target_speed = 60.0
-			acceleration = 10.0
-	if collided and current_speed > (target_speed/2):
-		acceleration = -10.0
-		current_speed += acceleration * delta
+	target_speed = round(abs(MAX_SPEED - (brake_magnitude*MAX_SPEED)))
+	acceleration = (target_speed - current_speed)/6
+	if collided and current_speed > (MAX_SPEED/2):
+		acceleration -= 10.0 # additive
 		collided = false
+		current_speed += acceleration * delta
 	elif current_speed != target_speed:
 		current_speed += acceleration * delta
 		if abs(current_speed - target_speed) < 5.0: # clamp
@@ -123,7 +92,7 @@ func _physics_process(delta):
 				elif valid2:
 					agent.target_position = point2
 			else:
-				pass #assert(false)
+				pass #assert(false) # going off the track
 		else:
 			# continue straight
 			agent.target_position = next_point
@@ -164,17 +133,24 @@ func follow_behind(target_position:Vector2) -> void:
 		car_behind.follow_behind(round_to_tile(global_position))
 
 
-func _on_area_2d_area_entered(area):
-	if area.name == "TrainCollision":
-		var switch_point = area.get_parent().get_point(tile_size)
-		if point_on_tracks(switch_point):
-			agent.target_position = switch_point
-
-
 func hit(dmg:float) -> void:
+	# Called by something hostile
 	if hp > 0.0:
 		hp -= dmg
 	if hp <= 0.0:
 		dead = true
 	for car in cars:
 		car.collided = true
+
+
+func _on_brake(_brake_magnitude:float) -> void:
+	# Received brake signal and magnitude from the brake lever UI
+	braking = _brake_magnitude > 0.1
+	brake_magnitude = _brake_magnitude
+
+
+func _on_area_2d_area_entered(area):
+	if area.name == "TrainCollision":
+		var switch_point = area.get_parent().get_point(tile_size)
+		if point_on_tracks(switch_point):
+			agent.target_position = switch_point

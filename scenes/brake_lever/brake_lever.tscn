@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5qf21tf7jh4k"]
+
+[ext_resource type="Script" path="res://scenes/brake_lever/brake_lever.gd" id="1_uoc6v"]
+[ext_resource type="Texture2D" uid="uid://bia17uma7ye0o" path="res://scenes/brake_lever/lever.png" id="2_maqua"]
+[ext_resource type="Texture2D" uid="uid://donbf4poubf1d" path="res://scenes/brake_lever/lever-base.png" id="3_mqx55"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5qf1"]
+size = Vector2(32, 168)
+
+[node name="BrakeLever" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_uoc6v")
+
+[node name="Lever" type="Area2D" parent="."]
+rotation = 1.5708
+collision_layer = 16
+collision_mask = 16
+
+[node name="Sprite2D" type="Sprite2D" parent="Lever"]
+texture_filter = 1
+texture = ExtResource("2_maqua")
+centered = false
+offset = Vector2(-16, -168)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lever"]
+position = Vector2(0, -84)
+shape = SubResource("RectangleShape2D_y5qf1")
+
+[node name="Base" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("3_mqx55")
+
+[connection signal="mouse_entered" from="Lever" to="." method="_on_lever_mouse_entered"]
+[connection signal="mouse_exited" from="Lever" to="." method="_on_lever_mouse_exited"]

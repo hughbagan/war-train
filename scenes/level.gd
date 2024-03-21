@@ -1,5 +1,6 @@
 class_name Level extends Node2D
 
+@onready var brake_lever:Node2D = $UI/BrakeLever
 @onready var train:TrainCar = $Train/TrainCar
 @onready var camera:Camera2D = $Camera2D
 @onready var camera_size:Vector2 = get_viewport_rect().size / camera.zoom
