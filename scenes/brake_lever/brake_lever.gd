@@ -8,7 +8,6 @@ signal brake
 
 
 func _input(event:InputEvent) -> void:
-    # print(event, " ", base.position)
     if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
         if mouse_on_lever:
             if not dragging and event.pressed:
