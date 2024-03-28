@@ -15,6 +15,7 @@ texture = ExtResource("3_hw2h2")
 z_index = 1
 z_as_relative = false
 texture_filter = 1
+scale = Vector2(2, 2)
 texture = ExtResource("3_5cg8p")
 offset = Vector2(0, 8)
 region_enabled = true

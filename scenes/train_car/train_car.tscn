@@ -6,7 +6,7 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_utj8x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2w136"]
-size = Vector2(32, 32)
+size = Vector2(64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u7d6r"]
 size = Vector2(16, 16)
@@ -27,6 +27,7 @@ sprite_frames = SubResource("SpriteFrames_utj8x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(2, 2)
 texture = ExtResource("2_lf2xj")
 region_rect = Rect2(448, 256, 64, 64)
 
@@ -34,8 +35,8 @@ region_rect = Rect2(448, 256, 64, 64)
 shape = SubResource("RectangleShape2D_2w136")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 2.0
-target_desired_distance = 2.0
+path_desired_distance = 3.0
+target_desired_distance = 3.0
 
 [node name="Area2D" type="Area2D" parent="."]
 
