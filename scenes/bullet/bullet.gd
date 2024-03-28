@@ -24,7 +24,7 @@ func _physics_process(_delta:float) -> void:
     if cols > 0:
         for i in range(cols):
             var col = get_slide_collision(i).get_collider()
-            if col is Enemy:
+            if col is Enemy or col is Obstacle:
                 col.hit(creator, damage)
                 queue_free()
 

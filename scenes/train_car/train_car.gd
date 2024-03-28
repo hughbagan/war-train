@@ -104,7 +104,12 @@ func _physics_process(delta):
 			car_behind.follow_behind(round_to_tile(global_position))
 
 	velocity = global_position.direction_to(agent.get_next_path_position()) * abs(current_speed)
-	move_and_slide()
+	var cols = move_and_slide()
+	if cols:
+		for i in get_slide_collision_count():
+			var col = get_slide_collision(i).get_collider()
+			if col is Obstacle:
+				stop_train()
 
 	if level_ref.outside_camera(global_position):
 		emit_signal("level_camera_exited", global_position)
@@ -132,6 +137,13 @@ func follow_behind(target_position:Vector2) -> void:
 	var car_behind:TrainCar = get_car_behind()
 	if car_behind:
 		car_behind.follow_behind(round_to_tile(global_position))
+
+
+func stop_train() -> void:
+	if cars[0] == self:
+		for car in cars:
+			car.current_speed = 0.0
+			car.brake_magnitude = 1.0
 
 
 func hit(dmg:float) -> void:

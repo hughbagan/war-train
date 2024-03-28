@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://ciilgxbyqticn" path="res://scenes/train_car/train_car.tscn" id="2_mdq6g"]
 [ext_resource type="Texture2D" uid="uid://pv2x1gar1yd2" path="res://common/tilemap_packed_edit.png" id="2_wc3kg"]
 [ext_resource type="PackedScene" uid="uid://b57xo4rca2lo5" path="res://scenes/gun_car/gun_car.tscn" id="3_q0ml3"]
-[ext_resource type="PackedScene" uid="uid://ci6bneccdtqsd" path="res://scenes/dummy_car/dummy_car.tscn" id="4_fr8ma"]
 [ext_resource type="Texture2D" uid="uid://b4dc16pawpqb1" path="res://common/tiles.png" id="5_4xxb2"]
+[ext_resource type="PackedScene" uid="uid://3hmrl1jpdc8l" path="res://scenes/obstacle/obstacle.tscn" id="9_5njms"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cv5rf"]
 source_geometry_group_name = &"navigation_polygon_source_group"
@@ -354,18 +354,31 @@ metadata/_edit_lock_ = true
 texture_filter = 1
 tile_set = SubResource("TileSet_xk2s0")
 format = 2
-layer_0/tile_data = PackedInt32Array(327687, 131074, 1, 327686, 131074, 1, 327685, 131074, 1, 327684, 131074, 1, 327683, 131074, 1, 327688, 131074, 1, 327689, 131074, 1, 327690, 131074, 1, 327691, 131074, 1, 327692, 131074, 1, 327693, 65538, 0, 393229, 2, 1, 393230, 131074, 1, 393231, 131074, 1, 393232, 65538, 1, 327696, 2, 0, 327697, 131074, 1, 327698, 65538, 1, 262162, 2, 0, 262163, 131074, 1)
+layer_0/tile_data = PackedInt32Array(327687, 131074, 1, 327686, 131074, 1, 327685, 131074, 1, 327684, 131074, 1, 327683, 131074, 1, 327688, 131074, 1, 327689, 131074, 1, 327690, 131074, 1, 327691, 131074, 1, 327692, 131074, 1, 327693, 65538, 0, 393229, 2, 1, 393230, 131074, 1, 393231, 131074, 1, 393232, 65538, 1, 327696, 2, 0, 327697, 131074, 1, 327698, 65538, 1, 262162, 2, 0, 262163, 131074, 1, 262164, 131074, 1, 262165, 65538, 0, 327701, 131074, 0, 393237, 131074, 0, 458773, 2, 1, 458774, 131074, 1, 458775, 131074, 1, 458776, 131074, 1, 458777, 131074, 1, 458778, 131074, 1, 458779, 131074, 1, 458780, 131074, 1, 458781, 131074, 1)
 metadata/_edit_lock_ = true
 
 [node name="Train" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="TrainCar" parent="Train" instance=ExtResource("2_mdq6g")]
-position = Vector2(352, 352)
+position = Vector2(1376, 288)
 
 [node name="GunCar" parent="Train" instance=ExtResource("3_q0ml3")]
-position = Vector2(288, 352)
+position = Vector2(1312, 288)
+collision_mask = 0
 motion_mode = 0
 
-[node name="DummyCar" parent="Train" instance=ExtResource("4_fr8ma")]
-position = Vector2(224, 352)
+[node name="Obstacle" parent="." instance=ExtResource("9_5njms")]
+position = Vector2(992, 288)
+
+[node name="Obstacle2" parent="." instance=ExtResource("9_5njms")]
+position = Vector2(1184, 480)
+
+[node name="Obstacle3" parent="." instance=ExtResource("9_5njms")]
+position = Vector2(1120, 160)
+
+[node name="Obstacle4" parent="." instance=ExtResource("9_5njms")]
+position = Vector2(800, 128)
+
+[node name="Obstacle5" parent="." instance=ExtResource("9_5njms")]
+position = Vector2(1824, 480)
