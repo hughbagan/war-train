@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://c37wgnboje5qm"]
+
+[ext_resource type="Texture2D" uid="uid://bcuuh1gxcoe2a" path="res://scenes/obstacle/obstacle.png" id="1_06wnr"]
+[ext_resource type="Script" path="res://scenes/pinata/pinata.gd" id="1_ofrfx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57dvy"]
+atlas = ExtResource("1_06wnr")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vm2y8"]
+atlas = ExtResource("1_06wnr")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xaptt"]
+atlas = ExtResource("1_06wnr")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8g3hu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57dvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vm2y8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xaptt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vk7lr"]
+radius = 32.0
+
+[node name="Pinata" type="StaticBody2D"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_ofrfx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.980392, 0.980392, 0, 1)
+sprite_frames = SubResource("SpriteFrames_8g3hu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vk7lr")

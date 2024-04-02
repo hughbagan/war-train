@@ -1,8 +1,9 @@
-[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://bss4qop3u0cm"]
+[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://bss4qop3u0cm"]
 
 [ext_resource type="Texture2D" uid="uid://b4dc16pawpqb1" path="res://common/tiles.png" id="1_s3nnn"]
 [ext_resource type="PackedScene" uid="uid://3hmrl1jpdc8l" path="res://scenes/obstacle/obstacle.tscn" id="2_bcksr"]
 [ext_resource type="PackedScene" uid="uid://c64dfq6ofj5tp" path="res://scenes/enemy/enemy.tscn" id="3_dilme"]
+[ext_resource type="PackedScene" uid="uid://c37wgnboje5qm" path="res://scenes/pinata/pinata.tscn" id="4_33j43"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wyjyb"]
 vertices = PackedVector2Array(32, -16, 32, 16, 16, 16, -16, -16, -16, 32, 16, 32)
@@ -122,6 +123,7 @@ texture_region_size = Vector2i(64, 64)
 resource_name = "entities"
 scenes/1/scene = ExtResource("2_bcksr")
 scenes/2/scene = ExtResource("3_dilme")
+scenes/3/scene = ExtResource("4_33j43")
 
 [resource]
 tile_size = Vector2i(64, 64)

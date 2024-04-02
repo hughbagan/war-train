@@ -17,6 +17,7 @@ agent_radius = 8.0
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_b65qk")
+metadata/_edit_lock_ = true
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
@@ -57,6 +58,7 @@ text = "0.0"
 anchor_mode = 0
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+texture_filter = 1
 navigation_polygon = SubResource("NavigationPolygon_cv5rf")
 use_edge_connections = false
 metadata/_edit_lock_ = true
@@ -95,8 +97,19 @@ layer_0/tile_data = PackedInt32Array(458752, 131074, 1, 458753, 131074, 1, 45875
 layer_1/name = "entities"
 layer_1/tile_data = PackedInt32Array(262152, 3, 65536, 327688, 3, 65536, 393224, 3, 65536, 458760, 3, 65536)
 
+[node name="Screen4" type="TileMap" parent="NavigationRegion2D"]
+texture_filter = 1
+position = Vector2(2560, 0)
+tile_set = ExtResource("4_yld43")
+format = 2
+layer_0/name = "tileset"
+layer_0/tile_data = PackedInt32Array(524288, 131074, 1, 524289, 131074, 1, 524290, 131074, 1, 524291, 65538, 1, 458755, 2, 0, 458756, 131074, 1, 458757, 131074, 1, 458758, 65538, 1, 393222, 2, 0, 393223, 131074, 1, 393224, 65538, 1, 327688, 2, 0, 327689, 131074, 1, 262149, 3, 196608, 524295, 3, 65536, 65538, 3, 65536)
+layer_1/name = "entities"
+layer_1/tile_data = PackedInt32Array()
+
 [node name="Train" type="Node2D" parent="."]
 y_sort_enabled = true
+metadata/_edit_lock_ = true
 
 [node name="TrainCar" parent="Train" instance=ExtResource("2_mdq6g")]
 position = Vector2(352, 352)

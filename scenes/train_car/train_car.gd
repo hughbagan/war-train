@@ -6,7 +6,6 @@ class_name TrainCar extends CharacterBody2D
 @onready var cars:Array[Node] = get_parent().get_children()
 @onready var anim:AnimatedSprite2D = $AnimatedSprite2D
 @onready var agent:NavigationAgent2D = $NavigationAgent2D
-@onready var camera:Camera2D = $Camera2D
 @onready var sprite:Sprite2D = $Sprite2D
 const MAX_SPEED:float = 80.0
 var current_speed:float = 0.0
