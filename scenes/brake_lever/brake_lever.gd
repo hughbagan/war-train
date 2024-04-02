@@ -20,9 +20,9 @@ func _input(event:InputEvent) -> void:
         emit_signal("brake", brake_magnitude)
 
 
-func _on_lever_mouse_entered():
+func _on_lever_mouse_entered() -> void:
     mouse_on_lever = true
 
 
-func _on_lever_mouse_exited():
+func _on_lever_mouse_exited() -> void:
     mouse_on_lever = false

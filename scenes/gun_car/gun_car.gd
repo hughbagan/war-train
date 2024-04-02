@@ -11,11 +11,11 @@ var burst_rounds:int = 0 # number of rounds left in the mag
 var damage:float = 1.0 # passed to bullet
 
 
-func _ready():
+func _ready() -> void:
 	super()
 
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	super(delta)
 
 	var dir_to_mouse = global_position.direction_to(get_global_mouse_position()).normalized()

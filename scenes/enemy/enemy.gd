@@ -11,11 +11,11 @@ var hp:float = 4.0
 var damage:float = 0.1
 
 
-func _ready():
+func _ready() -> void:
     scale_x = randf_range(0.0, PI)
 
 
-func _process(delta):
+func _process(delta) -> void:
     match(state):
         States.SENTRY:
             # make the sprite "breathe"
@@ -29,7 +29,7 @@ func _process(delta):
             sprite.scale = Vector2(sin_x, sin_x)
 
 
-func _physics_process(_delta):
+func _physics_process(_delta) -> void:
     match(state):
         States.SENTRY:
             pass
@@ -52,7 +52,7 @@ func state_follow(follow_node:Node2D) -> void:
     sprite.play()
 
 
-func _on_sentry_area_body_entered(body:PhysicsBody2D):
+func _on_sentry_area_body_entered(body:PhysicsBody2D) -> void:
     if body is TrainCar:
         state_follow(body)
 

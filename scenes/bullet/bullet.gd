@@ -2,13 +2,13 @@ class_name Bullet extends CharacterBody2D
 
 @onready var level_ref:Node2D = find_parent("Level")
 static var bullet_scene:Resource = load("res://scenes/bullet/bullet.tscn")
-const speed:float = 100.0
+const speed:float = 150.0
 var creator:Node2D
 var direction:Vector2
 var damage:float
 
 
-static func construct(caller:Node2D, pos:Vector2, dir:Vector2, dmg:float) -> Bullet:
+static func construct(caller:GunCar, pos:Vector2, dir:Vector2, dmg:float) -> Bullet:
     var new_bullet = bullet_scene.instantiate()
     new_bullet.creator = caller
     new_bullet.global_position = pos

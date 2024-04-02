@@ -1,14 +1,14 @@
 class_name TrainCar extends CharacterBody2D
 
 @onready var level_ref:Node2D = find_parent("Level")
-@onready var tile_size:float = level_ref.get_node("NavigationRegion2D/TileMap").tile_set.tile_size.x
+@onready var tile_size:float = level_ref.get_node("NavigationRegion2D/Screen0").tile_set.tile_size.x
 @onready var map:RID = get_world_2d().navigation_map
 @onready var cars:Array[Node] = get_parent().get_children()
 @onready var anim:AnimatedSprite2D = $AnimatedSprite2D
 @onready var agent:NavigationAgent2D = $NavigationAgent2D
 @onready var camera:Camera2D = $Camera2D
 @onready var sprite:Sprite2D = $Sprite2D
-const MAX_SPEED:float = 60.0
+const MAX_SPEED:float = 80.0
 var current_speed:float = 0.0
 var target_speed:float = 0.0
 var acceleration:float = 0.0
@@ -20,26 +20,26 @@ var dead:bool = false
 signal level_camera_exited
 
 
-func _ready():
+func _ready() -> void:
 	await level_ref.ready
 	level_ref.brake_lever.brake.connect(_on_brake)
 	call_deferred("wait_for_navserver")
 
 
-func wait_for_navserver():
+func wait_for_navserver() -> void:
 	await get_tree().process_frame
 	# FIXME: wont always be going to the right to start
 	agent.target_position = Vector2(global_position.x+64, global_position.y)
 
 
-func _process(_delta):
+func _process(_delta) -> void:
 	if dead:
 		sprite.modulate = Color(0.5, hp/100.0, hp/100.0)
 	else:
 		sprite.modulate = Color(1.0, hp/100.0, hp/100.0)
 
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	if dead:
 		pass
 
@@ -47,7 +47,7 @@ func _physics_process(delta):
 
 	# Adjust speed based on the brake and hostile collisions
 	target_speed = round(abs(MAX_SPEED - (brake_magnitude*MAX_SPEED)))
-	acceleration = (target_speed - current_speed)/6
+	acceleration = (target_speed - current_speed)/4
 	if collided and current_speed > (MAX_SPEED/2):
 		acceleration -= 10.0 # additive
 		collided = false
@@ -162,8 +162,10 @@ func _on_brake(_brake_magnitude:float) -> void:
 	brake_magnitude = _brake_magnitude
 
 
-func _on_area_2d_area_entered(area):
-	if area.name == "TrainCollision":
-		var switch_point = area.get_parent().get_point(tile_size)
-		if point_on_tracks(switch_point):
-			agent.target_position = switch_point
+func _on_area_2d_area_entered(area) -> void:
+	if area is Froot:
+		area.pickup()
+	# if area.name == "TrainCollision":
+	# 	var switch_point = area.get_parent().get_point(tile_size)
+	# 	if point_on_tracks(switch_point):
+	# 		agent.target_position = switch_point
