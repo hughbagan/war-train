@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://bss4qop3u0cm"]
+[gd_resource type="TileSet" load_steps=18 format=3 uid="uid://bss4qop3u0cm"]
 
 [ext_resource type="Texture2D" uid="uid://b4dc16pawpqb1" path="res://common/tiles.png" id="1_s3nnn"]
 [ext_resource type="PackedScene" uid="uid://3hmrl1jpdc8l" path="res://scenes/obstacle/obstacle.tscn" id="2_bcksr"]
@@ -75,6 +75,13 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -32, -16, -16, -32
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 0.0
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ljlln"]
+vertices = PackedVector2Array(16, -16, 32, -16, 32, 16, 16, 16, 16, 32, -16, 32, -16, 16, -16, -16, -32, 16, -32, -16, 16, -32, -16, -32)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5, 6), PackedInt32Array(0, 3, 6, 7), PackedInt32Array(6, 8, 9, 7), PackedInt32Array(10, 0, 7, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-32, -16, -16, -16, -16, -32, 16, -32, 16, -16, 32, -16, 32, 16, 16, 16, 16, 32, -16, 32, -16, 16, -32, 16)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ku3gt"]
 texture = ExtResource("1_s3nnn")
 texture_region_size = Vector2i(64, 64)
@@ -118,6 +125,10 @@ texture_region_size = Vector2i(64, 64)
 4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:1/0/physics_layer_0/angular_velocity = 0.0
 4:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_o25rc")
+5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_ljlln")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_v56q4"]
 resource_name = "entities"
