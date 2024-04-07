@@ -59,32 +59,43 @@ func _physics_process(delta) -> void:
 	# Handle next track tile
 	if agent.is_navigation_finished() and velocity != Vector2() and cars[0] == self:
 		# try to keep going straight, or turn left or right
-		var next_point = global_position
+		var current:Vector2 = round_to_tile(global_position)
+		var next_point_check:Vector2 = current
+		var next_point:Vector2 = current
 		match dir:
 			Vector2(1, 0):
+				next_point_check.x += tile_size*0.5 + 2
 				next_point.x += tile_size
 			Vector2(-1, 0):
+				next_point_check.x -= tile_size*0.5 + 2
 				next_point.x -= tile_size
 			Vector2(0, 1):
+				next_point_check.y += tile_size*0.5 + 2
 				next_point.y += tile_size
 			Vector2(0, -1):
+				next_point_check.y -= tile_size*0.5 + 2
 				next_point.y -= tile_size
-		next_point = round_to_tile(next_point)
-		if not point_on_tracks(next_point):
+		if not point_on_tracks(next_point_check):
 			# assuming we hit a corner -- we need to turn!
-			var point1 = global_position
+			var check1 = current # peek first pixels of next tile for navmesh
+			var check2 = current
+			var point1 = global_position # the point to goto if check succeeds
 			var point2 = global_position
 			match dir:
 				Vector2(1, 0), Vector2(-1, 0):
+					check1.y += tile_size*0.5 + 2
+					check2.y -= tile_size*0.5 + 2
 					point1.y += tile_size
 					point2.y -= tile_size
 				Vector2(0, 1), Vector2(0, -1):
+					check1.x += tile_size*0.5 + 2
+					check2.x -= tile_size*0.5 + 2
 					point1.x += tile_size
 					point2.x -= tile_size
 			point1 = round_to_tile(point1)
 			point2 = round_to_tile(point2)
-			var valid1 = point_on_tracks(point1)
-			var valid2 = point_on_tracks(point2)
+			var valid1 = point_on_tracks(check1)
+			var valid2 = point_on_tracks(check2)
 			if (valid1 and not valid2) \
 			or (valid2 and not valid1):
 				if valid1:
@@ -92,10 +103,11 @@ func _physics_process(delta) -> void:
 				elif valid2:
 					agent.target_position = point2
 			else:
-				pass #assert(false) # going off the track
+				assert(false) # two or no available paths
 		else:
 			# continue straight
 			agent.target_position = next_point
+		get_node("../../Point").global_position = agent.target_position
 
 		# make the cars behind this one follow_behind
 		var car_behind:TrainCar = get_car_behind()

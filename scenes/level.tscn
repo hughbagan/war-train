@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://drl4p4hp5nmcx"]
+[gd_scene load_steps=10 format=3 uid="uid://drl4p4hp5nmcx"]
 
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_b65qk"]
 [ext_resource type="PackedScene" uid="uid://b5qf21tf7jh4k" path="res://scenes/brake_lever/brake_lever.tscn" id="2_1n3ws"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://djul0f5fy0t1w" path="res://common/FatPix-SVG.ttf" id="3_7yb1y"]
 [ext_resource type="PackedScene" uid="uid://b57xo4rca2lo5" path="res://scenes/gun_car/gun_car.tscn" id="3_q0ml3"]
 [ext_resource type="TileSet" uid="uid://bss4qop3u0cm" path="res://common/tileset.tres" id="4_yld43"]
+[ext_resource type="Texture2D" uid="uid://cyfusej1gat13" path="res://common/red_square.png" id="7_na4i1"]
 
 [sub_resource type="Theme" id="Theme_ftwr0"]
 default_font = ExtResource("3_7yb1y")
@@ -18,6 +19,7 @@ agent_radius = 8.0
 [node name="Level" type="Node2D"]
 script = ExtResource("1_b65qk")
 metadata/_edit_lock_ = true
+metadata/_edit_vertical_guides_ = [4672.0]
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
@@ -331,9 +333,14 @@ y_sort_enabled = true
 metadata/_edit_lock_ = true
 
 [node name="TrainCar" parent="Train" instance=ExtResource("2_mdq6g")]
-position = Vector2(352, 352)
+position = Vector2(5664, 160)
 
 [node name="GunCar" parent="Train" instance=ExtResource("3_q0ml3")]
-position = Vector2(288, 352)
+position = Vector2(5600, 160)
 collision_mask = 0
 motion_mode = 0
+
+[node name="Point" type="Sprite2D" parent="."]
+z_index = 5
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_na4i1")
