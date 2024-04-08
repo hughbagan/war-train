@@ -60,5 +60,6 @@ func _on_sentry_area_body_entered(body:PhysicsBody2D) -> void:
 func hit(bullet_owner:Node2D, dmg:int) -> void:
     hp -= dmg
     if hp <= 0:
+        get_parent().add_child(Froot.construct(position))
         queue_free()
     state_follow(bullet_owner)
