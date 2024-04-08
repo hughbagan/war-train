@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func _process(delta) -> void:
     time += delta
-    time_label.text = "%.3f" % fmod(time, 60)
+    time_label.text = str(round(time))
 
 
 func outside_camera(global_pos:Vector2) -> bool:

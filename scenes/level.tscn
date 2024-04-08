@@ -333,10 +333,10 @@ y_sort_enabled = true
 metadata/_edit_lock_ = true
 
 [node name="TrainCar" parent="Train" instance=ExtResource("2_mdq6g")]
-position = Vector2(5664, 160)
+position = Vector2(352, 352)
 
 [node name="GunCar" parent="Train" instance=ExtResource("3_q0ml3")]
-position = Vector2(5600, 160)
+position = Vector2(288, 352)
 collision_mask = 0
 motion_mode = 0
 
