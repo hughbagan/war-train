@@ -8,6 +8,7 @@
 [node name="Level" instance=ExtResource("1_c5unv")]
 
 [node name="ColorRect" parent="Background" index="0"]
+visible = false
 color = Color(0.411765, 0.717647, 0.729412, 1)
 
 [node name="Screen0" type="TileMap" parent="NavigationRegion2D" index="0"]

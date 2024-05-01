@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://dikaislbq3xqj"]
 
-[ext_resource type="Texture2D" uid="uid://dbudo8kbdr7af" path="res://scenes/froot/Froots N Veggies.png" id="1_llxqs"]
 [ext_resource type="Script" path="res://scenes/froot/froot.gd" id="1_vhqae"]
+[ext_resource type="Texture2D" uid="uid://c4gydfd8yreqm" path="res://common/white_circle.png" id="2_hrott"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_afebe"]
-radius = 32.0
+radius = 16.0
 
 [node name="Froot" type="Area2D"]
 collision_layer = 64
@@ -12,11 +12,11 @@ collision_mask = 2
 script = ExtResource("1_vhqae")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
 texture_filter = 1
-scale = Vector2(4, 4)
-texture = ExtResource("1_llxqs")
-region_enabled = true
-region_rect = Rect2(16, 32, 16, 16)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_hrott")
+region_rect = Rect2(0, 16, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_afebe")

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_b65qk"]
 [ext_resource type="PackedScene" uid="uid://b5qf21tf7jh4k" path="res://scenes/brake_lever/brake_lever.tscn" id="2_1n3ws"]
 [ext_resource type="FontFile" uid="uid://djul0f5fy0t1w" path="res://common/FatPix-SVG.ttf" id="3_7yb1y"]
-[ext_resource type="Texture2D" uid="uid://cyfusej1gat13" path="res://common/red_square.png" id="7_na4i1"]
+[ext_resource type="Texture2D" uid="uid://bl2obagjvq4ux" path="res://common/white_square.png" id="4_dumtc"]
 
 [sub_resource type="Theme" id="Theme_ftwr0"]
 default_font = ExtResource("3_7yb1y")
@@ -66,6 +66,7 @@ y_sort_enabled = true
 metadata/_edit_lock_ = true
 
 [node name="Point" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
 z_index = 5
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("7_na4i1")
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("4_dumtc")

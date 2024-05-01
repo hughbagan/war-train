@@ -1,9 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://ci6bneccdtqsd"]
+[gd_scene load_steps=2 format=3 uid="uid://ci6bneccdtqsd"]
 
 [ext_resource type="PackedScene" uid="uid://ciilgxbyqticn" path="res://scenes/train_car/train_car.tscn" id="1_trx0k"]
-[ext_resource type="Texture2D" uid="uid://cg54fn6jm8cs" path="res://common/car.png" id="2_bxis3"]
 
 [node name="DummyCar" instance=ExtResource("1_trx0k")]
-
-[node name="Sprite2D" parent="." index="1"]
-texture = ExtResource("2_bxis3")

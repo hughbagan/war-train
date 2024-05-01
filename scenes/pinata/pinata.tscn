@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c37wgnboje5qm"]
+[gd_scene load_steps=9 format=3 uid="uid://c37wgnboje5qm"]
 
 [ext_resource type="Texture2D" uid="uid://bcuuh1gxcoe2a" path="res://scenes/obstacle/obstacle.png" id="1_06wnr"]
 [ext_resource type="Script" path="res://scenes/pinata/pinata.gd" id="1_ofrfx"]
+[ext_resource type="Texture2D" uid="uid://c4gydfd8yreqm" path="res://common/white_circle.png" id="3_bqujw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_57dvy"]
 atlas = ExtResource("1_06wnr")
@@ -43,6 +44,11 @@ script = ExtResource("1_ofrfx")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.980392, 0.980392, 0, 1)
 sprite_frames = SubResource("SpriteFrames_8g3hu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.72549, 0.72549, 0, 1)
+texture_filter = 1
+texture = ExtResource("3_bqujw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vk7lr")

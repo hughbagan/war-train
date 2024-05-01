@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ciilgxbyqticn"]
+[gd_scene load_steps=7 format=3 uid="uid://ciilgxbyqticn"]
 
 [ext_resource type="Script" path="res://scenes/train_car/train_car.gd" id="1_1ka1h"]
 [ext_resource type="Texture2D" uid="uid://b2lnapbnridjp" path="res://common/train.png" id="2_lf2xj"]
+[ext_resource type="Texture2D" uid="uid://bl2obagjvq4ux" path="res://common/white_square.png" id="2_lvgbu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_utj8x"]
 
@@ -26,6 +27,12 @@ position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_utj8x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_lvgbu")
+region_rect = Rect2(448, 256, 64, 64)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("2_lf2xj")
