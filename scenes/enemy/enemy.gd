@@ -7,7 +7,7 @@ var state:States = States.SENTRY
 var following:Node2D
 var scale_x:float = 0.0
 var movespeed:float = 50.0
-var hp:float = 4.0
+var hp:float = 5.0
 var damage:float = 0.1
 
 
