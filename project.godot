@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="war-train"
+config/name="prototype"
 run/main_scene="res://scenes/levels/level1.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
