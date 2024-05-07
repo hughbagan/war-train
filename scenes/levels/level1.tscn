@@ -7,9 +7,15 @@
 
 [node name="Level" instance=ExtResource("1_c5unv")]
 
-[node name="ColorRect" parent="Background" index="0"]
-visible = false
-color = Color(0.411765, 0.717647, 0.729412, 1)
+[node name="ColorRect" type="ColorRect" parent="Background" index="0"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
 [node name="Screen0" type="TileMap" parent="NavigationRegion2D" index="0"]
 texture_filter = 1
@@ -33,7 +39,7 @@ format = 2
 layer_0/name = "tileset"
 layer_0/tile_data = PackedInt32Array(393222, 131074, 1, 393223, 131074, 1, 393224, 131074, 1, 327681, 131074, 1, 327682, 131074, 1, 327683, 65538, 0, 393219, 2, 1, 393221, 131074, 1, 393220, 131074, 1, 327680, 131074, 1, 393225, 131074, 1)
 layer_1/name = "entities"
-layer_1/tile_data = PackedInt32Array(393221, 3, 196608, 524294, 3, 65536, 393222, 3, 65536, 131079, 3, 65536)
+layer_1/tile_data = PackedInt32Array(524294, 3, 65536, 393222, 3, 65536, 131079, 3, 65536, 393221, 3, 196608)
 
 [node name="Screen3" type="TileMap" parent="NavigationRegion2D" index="3"]
 texture_filter = 1
