@@ -61,7 +61,7 @@ texture_filter = 1
 navigation_polygon = SubResource("NavigationPolygon_cv5rf")
 use_edge_connections = false
 
-[node name="LevelBank" type="Node2D" parent="."]
+[node name="ScreenBank" type="Node2D" parent="."]
 
 [node name="Train" type="Node2D" parent="."]
 y_sort_enabled = true

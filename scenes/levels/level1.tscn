@@ -105,7 +105,7 @@ layer_0/tile_data = PackedInt32Array(393218, 131074, 1, 393219, 131074, 1, 39322
 layer_1/name = "entities"
 layer_1/tile_data = PackedInt32Array()
 
-[node name="Screen2" type="TileMap" parent="LevelBank" index="0"]
+[node name="Screen2" type="TileMap" parent="ScreenBank" index="0"]
 texture_filter = 1
 position = Vector2(1280, 1280)
 tile_set = ExtResource("2_an6u8")
@@ -115,7 +115,7 @@ layer_0/tile_data = PackedInt32Array(262144, 131074, 1, 262145, 65538, 0, 327681
 layer_1/name = "entities"
 layer_1/tile_data = PackedInt32Array(458757, 3, 65536, 458758, 3, 65536, 458756, 3, 65536)
 
-[node name="Screen3" type="TileMap" parent="LevelBank" index="1"]
+[node name="Screen3" type="TileMap" parent="ScreenBank" index="1"]
 texture_filter = 1
 position = Vector2(1920, 1280)
 tile_set = ExtResource("2_an6u8")
@@ -125,7 +125,7 @@ layer_0/tile_data = PackedInt32Array(458752, 131074, 1, 458753, 131074, 1, 45875
 layer_1/name = "entities"
 layer_1/tile_data = PackedInt32Array(262152, 3, 65536, 327688, 3, 65536, 393224, 3, 65536, 458760, 3, 65536)
 
-[node name="Screen5" type="TileMap" parent="LevelBank" index="2"]
+[node name="Screen5" type="TileMap" parent="ScreenBank" index="2"]
 texture_filter = 1
 position = Vector2(2560, 1280)
 tile_set = ExtResource("2_an6u8")
@@ -135,7 +135,7 @@ layer_0/tile_data = PackedInt32Array(262145, 65538, 1, 196609, 131074, 0, 131073
 layer_1/name = "entities"
 layer_1/tile_data = PackedInt32Array(458756, 3, 196608, 196611, 3, 196608, 262146, 3, 65536, 327681, 3, 65536)
 
-[node name="Screen9" type="TileMap" parent="LevelBank" index="3"]
+[node name="Screen9" type="TileMap" parent="ScreenBank" index="3"]
 texture_filter = 1
 position = Vector2(3840, 1280)
 tile_set = ExtResource("2_an6u8")
@@ -145,7 +145,7 @@ layer_0/tile_data = PackedInt32Array(393216, 65538, 1, 327680, 131074, 0, 262144
 layer_1/name = "entities"
 layer_1/tile_data = PackedInt32Array(131075, 3, 131072, 131079, 3, 131072, 196611, 3, 65536, 196612, 3, 65536, 196613, 3, 65536, 196614, 3, 65536, 262147, 3, 65536, 327683, 3, 65536, 327684, 3, 65536, 327685, 3, 65536, 327686, 3, 65536, 262150, 3, 65536, 262148, 3, 196608, 262149, 3, 196608, 262146, 3, 131072, 393223, 3, 131072, 262151, 3, 131072, 393218, 3, 131072)
 
-[node name="Screen10" type="TileMap" parent="LevelBank" index="4"]
+[node name="Screen10" type="TileMap" parent="ScreenBank" index="4"]
 texture_filter = 1
 position = Vector2(4480, 1280)
 tile_set = ExtResource("2_an6u8")
@@ -155,7 +155,7 @@ layer_0/tile_data = PackedInt32Array(524288, 131074, 1, 524289, 131074, 1, 52429
 layer_1/name = "entities"
 layer_1/tile_data = PackedInt32Array(262150, 3, 65536, 327687, 3, 65536, 393224, 3, 65536, 393225, 3, 65536, 65540, 3, 65536, 2, 3, 65536, 5, 3, 65536, 65541, 3, 65536, 131077, 3, 65536, 131078, 3, 65536, 7, 3, 65536, 65543, 3, 65536, 131079, 3, 65536, 196615, 3, 65536, 262151, 3, 65536, 327689, 3, 65536, 262153, 3, 65536, 196616, 3, 65536, 131081, 3, 65536, 65545, 3, 65536, 65544, 3, 65536, 8, 3, 65536, 458754, 3, 65536, 524293, 3, 196608)
 
-[node name="Screen11" type="TileMap" parent="LevelBank" index="5"]
+[node name="Screen11" type="TileMap" parent="ScreenBank" index="5"]
 texture_filter = 1
 position = Vector2(5120, 1280)
 tile_set = ExtResource("2_an6u8")
@@ -165,7 +165,7 @@ layer_0/tile_data = PackedInt32Array(65536, 131074, 1, 65537, 131074, 1, 65538, 
 layer_1/name = "entities"
 layer_1/tile_data = PackedInt32Array(131074, 3, 65536, 196610, 3, 65536, 131075, 3, 65536, 65539, 3, 65536, 3, 3, 65536, 4, 3, 65536, 131073, 3, 65536, 262145, 3, 65536, 262144, 3, 65536, 327680, 3, 65536, 0, 3, 65536, 1, 3, 65536, 131072, 3, 65536, 196608, 3, 65536, 327683, 3, 196608, 393219, 3, 131072, 589830, 3, 131072)
 
-[node name="Screen12" type="TileMap" parent="LevelBank" index="6"]
+[node name="Screen12" type="TileMap" parent="ScreenBank" index="6"]
 texture_filter = 1
 position = Vector2(5760, 1280)
 tile_set = ExtResource("2_an6u8")
@@ -175,7 +175,7 @@ layer_0/tile_data = PackedInt32Array(393218, 131074, 1, 393219, 65538, 0, 458755
 layer_1/name = "entities"
 layer_1/tile_data = PackedInt32Array(131075, 3, 65536, 131076, 3, 65536, 131077, 3, 65536, 131078, 3, 65536, 196612, 3, 65536, 196613, 3, 65536, 196614, 3, 65536, 196615, 3, 65536, 196616, 3, 65536, 262152, 3, 65536, 262153, 3, 65536, 327689, 3, 65536, 262151, 3, 65536, 131079, 3, 196608, 458758, 3, 65536, 393221, 3, 65536, 393220, 3, 131072, 458752, 3, 196608)
 
-[node name="Screen16" type="TileMap" parent="LevelBank" index="7"]
+[node name="Screen16" type="TileMap" parent="ScreenBank" index="7"]
 texture_filter = 1
 position = Vector2(6400, 1280)
 tile_set = ExtResource("2_an6u8")
@@ -185,7 +185,7 @@ layer_0/tile_data = PackedInt32Array(65536, 65538, 0, 131072, 2, 1, 131073, 1310
 layer_1/name = "entities"
 layer_1/tile_data = PackedInt32Array(65541, 3, 196608, 524293, 3, 196608, 524291, 3, 65536, 131076, 3, 65536, 327686, 3, 131072, 262144, 3, 131072, 589829, 3, 131072, 65543, 3, 131072)
 
-[node name="Screen17" type="TileMap" parent="LevelBank" index="8"]
+[node name="Screen17" type="TileMap" parent="ScreenBank" index="8"]
 texture_filter = 1
 position = Vector2(7040, 1280)
 tile_set = ExtResource("2_an6u8")
@@ -195,7 +195,7 @@ layer_0/tile_data = PackedInt32Array(458752, 131074, 1, 458753, 131074, 1, 45875
 layer_1/name = "entities"
 layer_1/tile_data = PackedInt32Array(393219, 3, 65536, 458755, 3, 65536, 524291, 3, 65536, 524292, 3, 65536, 524293, 3, 65536, 458757, 3, 65536, 393221, 3, 65536, 393220, 3, 65536, 458756, 3, 196608, 196608, 3, 65536, 262151, 3, 65536, 262152, 3, 65536, 262150, 3, 65536, 393223, 3, 131072, 196612, 3, 131072, 131077, 3, 131072)
 
-[node name="Screen18" type="TileMap" parent="LevelBank" index="9"]
+[node name="Screen18" type="TileMap" parent="ScreenBank" index="9"]
 texture_filter = 1
 position = Vector2(7680, 1280)
 tile_set = ExtResource("2_an6u8")
@@ -205,7 +205,7 @@ layer_0/tile_data = PackedInt32Array(524288, 131074, 1, 524289, 131074, 1, 52429
 layer_1/name = "entities"
 layer_1/tile_data = PackedInt32Array(589827, 3, 65536, 589828, 3, 65536, 589829, 3, 65536, 524292, 3, 65536, 458756, 3, 65536, 393220, 3, 65536, 458758, 3, 131072, 458754, 3, 131072, 327682, 3, 131072, 196610, 3, 131072, 65541, 3, 131072, 65543, 3, 131072, 196616, 3, 131072, 262149, 3, 196608, 2, 3, 65536)
 
-[node name="Screen19" type="TileMap" parent="LevelBank" index="10"]
+[node name="Screen19" type="TileMap" parent="ScreenBank" index="10"]
 texture_filter = 1
 position = Vector2(8320, 1280)
 tile_set = ExtResource("2_an6u8")
@@ -215,7 +215,7 @@ layer_0/tile_data = PackedInt32Array(524288, 65538, 1, 458752, 131074, 0, 393216
 layer_1/name = "entities"
 layer_1/tile_data = PackedInt32Array(131073, 3, 65536, 65538, 3, 65536, 65540, 3, 65536, 65542, 3, 65536, 65544, 3, 65536, 196616, 3, 65536, 327688, 3, 65536, 458760, 3, 65536, 524295, 3, 65536, 524293, 3, 65536, 524291, 3, 65536, 393219, 3, 65536, 262147, 3, 65536, 196612, 3, 65536, 196614, 3, 65536, 262145, 3, 65536, 393217, 3, 65536, 524289, 3, 65536, 65537, 3, 131072, 196611, 3, 131072, 327685, 3, 196608, 393222, 3, 131072, 524296, 3, 131072)
 
-[node name="Screen20" type="TileMap" parent="LevelBank" index="11"]
+[node name="Screen20" type="TileMap" parent="ScreenBank" index="11"]
 texture_filter = 1
 position = Vector2(8960, 1280)
 tile_set = ExtResource("2_an6u8")
@@ -225,7 +225,7 @@ layer_0/tile_data = PackedInt32Array(262144, 65538, 1, 196608, 131074, 0, 131072
 layer_1/name = "entities"
 layer_1/tile_data = PackedInt32Array(262146, 3, 65536, 262147, 3, 65536, 262148, 3, 65536, 262149, 3, 65536, 262150, 3, 65536, 262151, 3, 65536, 262152, 3, 65536, 262153, 3, 65536, 327684, 3, 131072, 327686, 3, 131072, 327688, 3, 131072, 589827, 3, 131072, 589829, 3, 131072, 589831, 3, 131072, 589832, 3, 131072, 262145, 3, 65536, 196610, 3, 65536, 327681, 3, 65536)
 
-[node name="Screen21" type="TileMap" parent="LevelBank" index="12"]
+[node name="Screen21" type="TileMap" parent="ScreenBank" index="12"]
 texture_filter = 1
 position = Vector2(9600, 1280)
 tile_set = ExtResource("2_an6u8")
@@ -235,7 +235,7 @@ layer_0/tile_data = PackedInt32Array(458752, 65538, 0, 524288, 2, 1, 524289, 131
 layer_1/name = "entities"
 layer_1/tile_data = PackedInt32Array(393218, 3, 131072, 65545, 3, 131072, 393221, 3, 65536, 393222, 3, 65536, 393223, 3, 65536, 327687, 3, 65536, 262151, 3, 65536, 196615, 3, 65536, 131079, 3, 65536, 65542, 3, 65536, 65541, 3, 65536, 65540, 3, 65536, 65539, 3, 65536, 131075, 3, 65536, 196611, 3, 65536, 262147, 3, 65536, 196613, 3, 196608, 262149, 3, 196608, 65543, 3, 131072)
 
-[node name="Screen22" type="TileMap" parent="LevelBank" index="13"]
+[node name="Screen22" type="TileMap" parent="ScreenBank" index="13"]
 texture_filter = 1
 position = Vector2(10240, 1280)
 tile_set = ExtResource("2_an6u8")
@@ -245,7 +245,7 @@ layer_0/tile_data = PackedInt32Array(458752, 65538, 1, 393216, 131074, 0, 327680
 layer_1/name = "entities"
 layer_1/tile_data = PackedInt32Array(65536, 3, 65536, 131072, 3, 65536, 196608, 3, 65536, 196609, 3, 65536, 327681, 3, 65536, 393217, 3, 65536, 393218, 3, 65536, 393219, 3, 65536, 458753, 3, 65536, 524289, 3, 65536, 589825, 3, 65536, 589824, 3, 65536, 524288, 3, 65536, 327684, 3, 65536, 262148, 3, 65536, 196612, 3, 65536, 131076, 3, 65536, 131075, 3, 65536, 131077, 3, 65536, 3, 3, 65536, 9, 3, 65536, 65544, 3, 65536, 131080, 3, 65536, 196616, 3, 65536, 196615, 3, 65536, 262151, 3, 65536, 327687, 3, 65536, 393223, 3, 65536, 393222, 3, 65536, 458758, 3, 65536, 524294, 3, 65536, 458757, 3, 65536, 196613, 3, 131072, 262149, 3, 65536, 6, 3, 196608, 524291, 3, 131072, 524296, 3, 131072)
 
-[node name="Screen23" type="TileMap" parent="LevelBank" index="14"]
+[node name="Screen23" type="TileMap" parent="ScreenBank" index="14"]
 texture_filter = 1
 position = Vector2(10880, 1280)
 tile_set = ExtResource("2_an6u8")
@@ -255,7 +255,7 @@ layer_0/tile_data = PackedInt32Array(196608, 131074, 1, 196609, 131074, 1, 19661
 layer_1/name = "entities"
 layer_1/tile_data = PackedInt32Array(262145, 3, 196608, 327683, 3, 196608, 393217, 3, 196608, 65540, 3, 196608, 65544, 3, 196608, 524292, 3, 196608, 458758, 3, 196608, 524296, 3, 131072, 262152, 3, 131072, 6, 3, 131072, 1, 3, 131072, 589825, 3, 131072, 131074, 3, 65536, 196612, 3, 65536, 196613, 3, 65536, 262149, 3, 65536, 262150, 3, 65536)
 
-[node name="Screen24" type="TileMap" parent="LevelBank" index="15"]
+[node name="Screen24" type="TileMap" parent="ScreenBank" index="15"]
 texture_filter = 1
 position = Vector2(11520, 1280)
 tile_set = ExtResource("2_an6u8")
@@ -265,7 +265,7 @@ layer_0/tile_data = PackedInt32Array(327680, 131074, 1, 327681, 131074, 1, 32768
 layer_1/name = "entities"
 layer_1/tile_data = PackedInt32Array(327684, 3, 65536, 393220, 3, 65536, 393219, 3, 65536, 458755, 3, 65536, 524291, 3, 65536, 524292, 3, 65536, 524293, 3, 65536, 458757, 3, 65536, 393221, 3, 65536, 458756, 3, 196608, 5, 3, 131072, 65542, 3, 131072, 7, 3, 131072, 65544, 3, 131072, 9, 3, 131072, 65540, 3, 131072)
 
-[node name="Screen25" type="TileMap" parent="LevelBank" index="16"]
+[node name="Screen25" type="TileMap" parent="ScreenBank" index="16"]
 texture_filter = 1
 position = Vector2(12160, 1280)
 tile_set = ExtResource("2_an6u8")
