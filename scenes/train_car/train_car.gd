@@ -119,7 +119,7 @@ func _physics_process(delta) -> void:
 	if cols:
 		for i in get_slide_collision_count():
 			var col = get_slide_collision(i).get_collider()
-			if col is Obstacle:
+			if col is Obstacle or col is Pinata:
 				stop_train()
 
 	if level_ref.outside_camera(global_position):
